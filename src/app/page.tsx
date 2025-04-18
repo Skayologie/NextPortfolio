@@ -16,6 +16,28 @@ import { useEffect, useState } from 'react';
 // import { initialBlobityOptions } from "./utils/BlobityConfig";
 // import useBlobity from "blobity/lib/react/useBlobity";
 
+export const metadata = {
+  title: "Jawad Boulmal",
+  description: "I'm a passionate and versatile full-stack web developer with a strong foundation in building dynamic, user-centric applications. Proficient in modern technologies like React and Next.js on the frontend, and PHP (Laravel), Node.js, and SQL on the backend, I specialize in crafting intuitive interfaces and scalable backend systems.",
+  keywords: [
+    "Full-Stack Developer",
+    "React",
+    "Next.js",
+    "Laravel",
+    "JavaScript",
+    "Web Development",
+    "Portfolio",
+    "Frontend",
+    "Backend"
+  ],
+  openGraph: {
+    title: "Jawad Boulmal",
+    description: "I'm a passionate and versatile full-stack web developer with a strong foundation in building dynamic, user-centric applications. Proficient in modern technologies like React and Next.js on the frontend, and PHP (Laravel), Node.js, and SQL on the backend, I specialize in crafting intuitive interfaces and scalable backend systems.",
+    url: "https://jawadboulmal.com/",
+    siteName: "Jawad Boulmal",
+    type: "website",
+  },
+};
 
 export default function page()  {
 
@@ -29,10 +51,9 @@ export default function page()  {
     // const [darkMode, setDarkMode] = useState(storedTheme);
     return (
       <div id="AllParent" className={'light-mode'}>
-      <div className={`min-h-screen dark:bg-black dark:text-white`}>
+        <div className={`min-h-screen dark:bg-black dark:text-white`}>
           <Header />
           <HeroSection />
-
           <div className="">
             <ScrollVelocity
               //@ts-ignore
@@ -41,17 +62,11 @@ export default function page()  {
               className="custom-scroll-text w-full flex justify-center text-center text-8xl  "
             />
           </div>
-
-
           <MyResume />
-          {/* <PortfolioSection /> */}
           <ExperienceTimeline />
-          {/* <TestimonialsSection /> */}
-          {/* <HireMeSection /> */}
-
           <BlogSection />
           <Footer />
-          </div>
+        </div>
       </div>
     )
   }

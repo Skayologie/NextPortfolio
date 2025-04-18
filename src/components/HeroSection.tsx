@@ -14,7 +14,7 @@ export function HeroSection() {
   const rotateX = useTransform(y, [0, 1], [15, -15]);
   const rotateY = useTransform(x, [0, 1], [-15, 15]);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const rect = ref.current.getBoundingClientRect();
     const xVal = (e.clientX - rect.left) / rect.width;
     const yVal = (e.clientY - rect.top) / rect.height;

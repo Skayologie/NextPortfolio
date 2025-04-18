@@ -19,6 +19,12 @@ import { useEffect, useState } from 'react';
 
 export default function page()  {
 
+    // First, let's update the props interface for ScrollVelocity
+    interface ScrollVelocityProps {
+      texts: string[];
+      velocity: number;
+      className?: string;
+    }
     // const storedTheme = localStorage.getItem('theme');
     // const [darkMode, setDarkMode] = useState(storedTheme);
     return (
@@ -29,7 +35,8 @@ export default function page()  {
 
           <div className="">
             <ScrollVelocity
-              texts={['Creative', 'Fullstack','Developer']} 
+              //@ts-ignore
+              texts={["Creative", "Fullstack","Developer"]}
               velocity={100} 
               className="custom-scroll-text w-full flex justify-center text-center text-8xl  "
             />

@@ -7,7 +7,7 @@ import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { HireMeSection } from "@/components/HireMeSection";
 import { PortfolioSection } from "@/components/PortfolioSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
-import { BlogSection } from "@/components/BlogSection";
+import { ProjectsPage } from "@/components/ProjectsPage";
 import { Footer } from "@/components/Footer";
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import ScrollVelocity from '@/components/ui/TextAnimations/ScrollVelocity/ScrollVelocity';
@@ -41,8 +41,7 @@ export default function page()  {
             />
           </div>
           <MyResume />
-          <ExperienceTimeline />
-          <BlogSection />
+          <ProjectsPage />
           <Footer />
         </div>
       </div>

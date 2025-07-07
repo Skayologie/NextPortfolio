@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { ExternalLink, Github, Code, Palette, Database, Smartphone, Star } from 'lucide-react';
+import { Helmet } from "react-helmet";
 
 export function ProjectsPage(){
   const [activeFilter, setActiveFilter] = useState('all');
@@ -70,6 +71,26 @@ export function ProjectsPage(){
   });
 
   const ProjectCard = ({ project, index }) => {
+
+<Helmet>
+        <title>My Projects - Web & Mobile Development Portfolio</title>
+        <meta name="description" content="Showcase of my web and mobile projects built with modern technologies like Flutter, Laravel, PHP, JavaScript, and more." />
+        <meta name="keywords" content="web development, mobile app, flutter, laravel, php, javascript, developer portfolio, projects showcase" />
+        <meta name="author" content="Jawad Boulmal" />
+        <meta name="robots" content="index, follow" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:title" content="My Projects - Web & Mobile Development Portfolio" />
+        <meta property="og:description" content="Showcase of my web and mobile projects built with modern technologies like Flutter, Laravel, PHP, JavaScript, and more." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://jawadboulmal.com/" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="My Projects - Web & Mobile Development Portfolio" />
+        <meta name="twitter:description" content="Showcase of my web and mobile projects built with modern technologies like Flutter, Laravel, PHP, JavaScript, and more." />
+      </Helmet>
+
     const x = useMotionValue(0);
     const y = useMotionValue(0);
     const rotateX = useTransform(y, [-0.5, 0.5], [3, -3]);

@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,26 +7,26 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 24 100% 58%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --background: 216 12% 12%; /* #1d1f22 dark navy */
+    --foreground: 0 0% 98%; /* white text */
+    --card: 216 12% 15%;
+    --card-foreground: 0 0% 98%;
+    --popover: 216 12% 15%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 14 100% 57%; /* #f15a24 orange accent */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 216 12% 20%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 216 12% 18%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 14 100% 57%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 24 100% 58%;
-    --radius: 0.75rem;
+    --border: 216 12% 22%;
+    --input: 216 12% 18%;
+    --ring: 14 100% 57%;
+    --radius: 0.5rem;
   }
 
   * {
@@ -34,17 +34,107 @@
   }
 
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-background text-foreground font-inter antialiased;
+    background-color: #1d1f22;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Sora', sans-serif;
   }
 
   .glass-card {
-    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-lg;
+    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-xl;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+/* Hero animated blobs */
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+  animation: blob-float 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero-blob-1 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, #f15a24 0%, #ff8c5a 100%);
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.hero-blob-2 {
+  width: 350px;
+  height: 350px;
+  background: linear-gradient(135deg, #4a90e2 0%, #6fb3ff 100%);
+  top: 50%;
+  right: 15%;
+  animation-delay: 5s;
+}
+
+.hero-blob-3 {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, #9b59b6 0%, #c39bd3 100%);
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 10s;
+}
+
+@keyframes blob-float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: relative;
+  width: 24px;
+  height: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+}
+
+.scroll-indicator span {
+  position: absolute;
+  width: 4px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.5);
+  left: 50%;
+  top: 8px;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  animation: scroll-down 2s ease-in-out infinite;
+}
+
+@keyframes scroll-down {
+  0% {
+    opacity: 0;
+    top: 8px;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    top: 20px;
   }
 }
 

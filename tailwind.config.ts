@@ -83,6 +83,10 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fadeIn 0.5s ease-out forwards",
       },
+      animationDelay: {
+        '2000': '2s',
+        '4000': '4s',
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

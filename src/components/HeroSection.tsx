@@ -1,101 +1,112 @@
-"use client"
+"use client";
 
-import { motion, useMotionValue, useTransform } from 'framer-motion';
-import { useRef } from 'react';
-
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 export function HeroSection() {
+  const techStacks = ["Java/Angular", "Laravel/React"];
+  const [currentStack, setCurrentStack] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
 
-  const ref = useRef(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+  useEffect(() => {
+    const handleTyping = () => {
+      const fullText = techStacks[currentStack];
+      
+      if (!isDeleting) {
+        // Typing forward
+        if (displayText.length < fullText.length) {
+          setDisplayText(fullText.substring(0, displayText.length + 1));
+          setTypingSpeed(150);
+        } else {
+          // Pause before deleting
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        // Deleting
+        if (displayText.length > 0) {
+          setDisplayText(fullText.substring(0, displayText.length - 1));
+          setTypingSpeed(75);
+        } else {
+          // Move to next tech stack
+          setIsDeleting(false);
+          setCurrentStack((prev) => (prev + 1) % techStacks.length);
+        }
+      }
+    };
 
-  // Rotate icon based on cursor position
-  const rotateX = useTransform(y, [0, 1], [15, -15]);
-  const rotateY = useTransform(x, [0, 1], [-15, 15]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = ref.current.getBoundingClientRect();
-    const xVal = (e.clientX - rect.left) / rect.width;
-    const yVal = (e.clientY - rect.top) / rect.height;
-    x.set(xVal);
-    y.set(yVal);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0.5);
-    y.set(0.5);
-  };
-
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, currentStack, typingSpeed, techStacks]);
 
   return (
-    <section className="container min-h-screen flex items-center pt-20">
-      <div className="grid md:grid-cols-2 gap-12 items-center">
-        <div className="space-y-6">
-          <h1 className="text-5xl md:text-6xl font-sora font-bold text-balance">
-            I'm <span className="text-primary">Jawad Boulmal </span>,<br />Web Developer
-          </h1>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center">
-              <span className="text-4xl font-sora text-primary">+3</span>
-              <span className="text-sm ml-2">Years<br />Experience</span>
-            </div>
-            {/* <div className="flex gap-1">
-              {[...Array(5)].map((_, i) => (
-                <svg key={i} className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
-            </div> */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Animated background blobs */}
+      <div className="hero-blob hero-blob-1"></div>
+      <div className="hero-blob hero-blob-2"></div>
+      <div className="hero-blob hero-blob-3"></div>
+
+      <div className="container relative z-10">
+        <div className="grid md:grid-cols-[1fr_auto] gap-12 items-center max-w-7xl">
+          <div className="max-w-4xl">
+            {/* Hero text - Ali Yara style large typography */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="space-y-3"
+            >
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-sora font-bold leading-tight tracking-tight">
+                Full Stack Developer
+              </h1>
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-sora font-bold leading-tight tracking-tight ">
+                {displayText}
+                <span className="animate-pulse">|</span>
+              </h1>
+            </motion.div>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+              className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
+            >
+              I specialize in building full-stack applications that are accessible,
+              responsive, interactive, and dynamic, with a strong focus on delivering
+              optimal performance.
+            </motion.p>
+
+            {/* Scroll indicator */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="mt-16 flex items-center gap-3"
+            >
+              <div className="scroll-indicator">
+                <span></span>
+              </div>
+            </motion.div>
           </div>
-          <p className="text-muted-foreground max-w-md">
-          a skilled web developer proficient in HTML, CSS, JavaScript, PHP, MySQL, jQuery, Bootstrap, and Laravel. I specialize in creating interactive and user-friendly websites. Let's work together to bring your digital ideas to life! 
-          </p>
-          <div className="flex gap-4">
-            <a href="#portfolio" className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
-              Portfolio →
-            </a>
-            <a href="#hire-me" className="px-6 py-3 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">
-              Hire me
-            </a>
-          </div>
-        </div>
-        <div className="hidden md:flex relative   justify-center ">
-            <div className="flex justify-self-center h-[300px] w-[300px] justify-center items-center  " >
-              <motion.div
-                ref={ref}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                style={{
-                  width: 100,
-                  height: 100,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  perspective: 1000,
-                }}
-              >
-                  <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full bg-primary/20 blur-[20px]  "></div>
-                  <motion.div
-                  style={{
-                    rotateX,
-                    rotateY,
-                    background: '#fff',
-                    borderRadius: '50%',
-                    boxShadow: '0 15px 30px rgba(0,0,0,0.1)',
-                  }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                  className='flex justify-self-center h-[300px] w-[300px]  '
-                >
-            
-                  <img 
-                    src="/images/profile.jpg"
-                    alt="Profile" 
-                    className="   rounded-full  max-w-md mx-auto animate-fade-in"
-                  />
-                </motion.div>
-              </motion.div>
+
+          {/* Profile Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            className="hidden md:block"
+          >
+            <div className="relative w-[300px] h-[300px] lg:w-[400px] lg:h-[400px]">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-purple-500/20 blur-2xl"></div>
+              <img
+                src="/images/profile.jpg"
+                alt="Jawad Boulmal"
+                className="relative w-full h-full object-cover rounded-full border-4 border-white/10 shadow-2xl"
+              />
             </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
+import { SkillsSection } from "@/components/SkillsSection";
 import { MyResume } from "@/components/ServicesSection";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { HireMeSection } from "@/components/HireMeSection";
@@ -28,10 +29,11 @@ export default function page()  {
     // const storedTheme = localStorage.getItem('theme');
     // const [darkMode, setDarkMode] = useState(storedTheme);
     return (
-      <div id="AllParent" className={'light-mode'}>
+      <div id="AllParent" className={'light-mode font-sora'}>
         <div className={`min-h-screen dark:bg-black dark:text-white`}>
           <Header />
           <HeroSection />
+          <SkillsSection />
           <div className="">
             <ScrollVelocity
               //@ts-ignore

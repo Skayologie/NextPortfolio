@@ -1,79 +1,64 @@
 
-import { ArrowRight, Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
+import { Github, Twitter, Linkedin, Mail } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-zinc-950 text-white py-16">
+    <footer className="bg-background border-t border-white/5 py-12">
       <div className="container">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-12">
-          <div className="flex-1">
-            <h2 className="text-3xl font-sora font-bold mb-4">Lets Connect there</h2>
-            <Button className="bg-primary hover:bg-primary/90">
-              Hire me <ArrowRight className="ml-2" />
-            </Button>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+          {/* Left - Name and tagline */}
+          <div className="text-center md:text-left">
+            <h3 className="text-2xl font-sora font-bold mb-2">Jawad Boulmal</h3>
+            <p className="text-sm text-muted-foreground">Full Stack Developer</p>
           </div>
 
-          <div className="flex-1">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-              <div>
-                <h3 className="text-orange-500 font-medium mb-4">Navigation</h3>
-                <ul className="space-y-2">
-                  <li><a href="/" className="hover:text-primary">Home</a></li>
-                  <li><a href="#about" className="hover:text-primary">About Us</a></li>
-                  <li><a href="#services" className="hover:text-primary">Service</a></li>
-                  <li><a href="#resume" className="hover:text-primary">Resume</a></li>
-                  <li><a href="#projects" className="hover:text-primary">Project</a></li>
-                </ul>
-              </div>
+          {/* Center - Quick Links */}
+          <nav className="flex flex-wrap justify-center gap-6 text-sm">
+            <a href="#Works" className="hover:text-primary transition-colors">Works</a>
+            <a href="#Skills" className="hover:text-primary transition-colors">Skills</a>
+            <a href="#Experience" className="hover:text-primary transition-colors">Experience</a>
+            <a href="#Resume" className="hover:text-primary transition-colors">Resume</a>
+            <a href="#Contact" className="hover:text-primary transition-colors">Contact</a>
+          </nav>
 
-              <div>
-                <h3 className="text-orange-500 font-medium mb-4">Contact</h3>
-                <ul className="space-y-2 text-gray-400">
-                  <li>+212 632773027</li>
-                  <li className="break-all text-[15px]">jawadboulmal@gmail.com</li>
-                </ul>
-              </div>
-
-              <div className="col-span-2 md:col-span-1">
-                <h3 className="text-orange-500 font-medium mb-4">Get the latest information</h3>
-                <div className="flex gap-2">
-                  <Input 
-                    type="email" 
-                    placeholder="Email Address"
-                    className="bg-zinc-900 border-zinc-800"
-                  />
-                  <Button size="icon" className="bg-primary hover:bg-primary/90">
-                    <ArrowRight />
-                  </Button>
-                </div>
-              </div>
-            </div>
+          {/* Right - Social Links */}
+          <div className="flex items-center gap-4">
+            <a 
+              href="https://github.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"
+            >
+              <Github size={18} />
+            </a>
+            <a 
+              href="https://twitter.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"
+            >
+              <Twitter size={18} />
+            </a>
+            <a 
+              href="https://linkedin.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"
+            >
+              <Linkedin size={18} />
+            </a>
+            <a 
+              href="mailto:jawadboulmal@gmail.com"
+              className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"
+            >
+              <Mail size={18} />
+            </a>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8">
-          <div className="flex items-center gap-4">
-            <span className="text-2xl font-bold">Jawad Boulmal</span>
-            <div className="flex gap-4">
-              <a href="#" className="hover:text-primary"><Facebook size={20} /></a>
-              <a href="#" className="hover:text-primary"><Twitter size={20} /></a>
-              <a href="#" className="hover:text-primary"><Instagram size={20} /></a>
-              <a href="#" className="hover:text-primary"><Linkedin size={20} /></a>
-              <a href="#" className="hover:text-primary"><Youtube size={20} /></a>
-            </div>
-          </div>
-
-
-          <div className="flex flex-wrap justify-center md:justify-end gap-4 text-sm text-gray-400">
-            <p>Copyright© 2025 Jawad Boulmal. All Rights Reserved.</p>
-            <div className="flex gap-4">
-              <a href="#" className="hover:text-primary">User Terms & Conditions</a>
-              <span>|</span>
-              <a href="#" className="hover:text-primary">Privacy Policy</a>
-            </div>
-          </div>
+        {/* Bottom - Copyright */}
+        <div className="mt-8 pt-8 border-t border-white/5 text-center text-sm text-muted-foreground">
+          <p>© {new Date().getFullYear()} Jawad Boulmal. All rights reserved.</p>
         </div>
       </div>
     </footer>

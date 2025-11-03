@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
+// Local Sora font is now loaded via @font-face in globals.css
 import "./globals.css";
 
 const geistSans = Geist({

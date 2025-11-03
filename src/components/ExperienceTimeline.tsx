@@ -28,7 +28,7 @@ export function ExperienceTimeline() {
   return (
     <section id="experience" className="container py-24">
       <h2 className="text-3xl font-sora font-bold">
-        My <span className="text-primary">Projects</span>
+        My <span className="text-red-500">Projects</span>
       </h2>
       <div className="relative">
         {/* <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-primary/20"></div> */}

@@ -226,7 +226,7 @@ export function ProjectsPage(){
       {/* Header Section */}
       <section className="container pt-20 pb-16">
         <h2 className="text-3xl font-sora font-bold">
-          My <span className="text-primary">Projects</span>
+          My <span className="text-red-500">Projects</span>
         </h2>
         <div className="text-center mb-16">
           <motion.div

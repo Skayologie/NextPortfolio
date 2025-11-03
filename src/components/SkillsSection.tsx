@@ -166,7 +166,7 @@ export function SkillsSection() {
       <div className="container relative z-10">
         {/* Section Heading */}
         <div className="mb-16">
-          <h2 className="text-3xl font-sora font-bold mb-2">My <span className="text-primary">Tech Stack</span></h2>
+          <h2 className="text-3xl font-sora font-bold mb-2">My <span className="text-red-500">Tech Stack</span></h2>
         </div>
 
         {/* Bubbles Grid with 3D effects */}

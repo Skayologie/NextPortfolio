@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { ExternalLink, Github, Code, Palette, Database, Smartphone, Star } from 'lucide-react';
 import { Helmet } from "react-helmet";
+import { TiltEffect } from './tilt-effect';
 
 export function ProjectsPage(){
   const [activeFilter, setActiveFilter] = useState('all');
@@ -130,12 +131,12 @@ export function ProjectsPage(){
         <div className="relative overflow-hidden">
           <div className="w-full h-48 bg-gradient-to-br from-orange-500/10 to-orange-600/5 flex items-center justify-center relative">
             <div className="text-orange-500/20 text-4xl font-bold">{project.title.split(' ')[0]}</div>
-            <div className="absolute justify-center items-center flex inset-0 bg-gradient-to-t from-gray-900/80 to-transparent">
-              <div className="absolute justify-center items-center flex inset-0  to-transparent">
-                <img className='h-full' src={project.image}/>
+              <div className="absolute justify-center items-center flex inset-0 bg-gradient-to-t from-gray-900/80 to-transparent">
+                <div className="absolute justify-center items-center flex inset-0  to-transparent">
+                  <img className='h-full' src={project.image}/>
+                </div>
+                  <img className='' src={project.image}/>
               </div>
-                <img className='' src={project.image}/>
-            </div>
           </div>
           
           <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -163,6 +164,7 @@ export function ProjectsPage(){
         </div>
         
         <div className="p-6">
+            <TiltEffect>
           <div className="flex items-center gap-2 mb-3">
             <h3 className="text-xl font-bold text-white group-hover:text-orange-500 transition-colors">
               {project.title}
@@ -194,7 +196,7 @@ export function ProjectsPage(){
               </motion.span>
             ))}
           </div>
-          
+          </TiltEffect>
           <div className="flex gap-3">
             <motion.a
               href={project.liveUrl}
@@ -218,6 +220,7 @@ export function ProjectsPage(){
         {/* Hover glow effect */}
         <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-orange-500/10 to-orange-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
       </motion.div>
+
     );
   };
 

@@ -1,6 +1,7 @@
 
 import { MonitorSmartphone, Globe, Layout } from "lucide-react";
 import CardInfo from "./profileCard";
+import { TiltEffect } from "./tilt-effect";
 
 const services = [
   {
@@ -26,7 +27,6 @@ export function MyResume() {
       <h2 className="text-3xl font-sora font-bold mb-2  z-10">My <span className="text-red-500">Resume</span></h2>
       <div className="flex justify-center md:grid-cols-3 ">
         <CardInfo/>
-        
       </div>
     </section>
   );

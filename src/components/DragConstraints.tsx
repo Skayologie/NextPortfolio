@@ -33,6 +33,7 @@ const constraints = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  justifySelf: "center",
 }
 
 const box = {

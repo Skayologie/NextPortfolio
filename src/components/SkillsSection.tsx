@@ -3,6 +3,7 @@
 import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { BubbleBackground } from "./animate-ui/components/backgrounds/bubble";
 
 const skills = [
   { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
@@ -158,24 +159,27 @@ const BubbleSkill = ({ skill, index }: { skill: typeof skills[0]; index: number 
 
 export function SkillsSection() {
   return (
-    <section id="Skills" className="relative py-32 overflow-hidden z-10">
-      {/* Floating gradient orbs */}
-      <div className="absolute top-20 left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-blob"></div>
-      <div className="absolute bottom-20 right-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+      <>
+        <section id="Skills" className="relative py-32 overflow-hidden z-10">
 
-      <div className="container relative z-10">
-        {/* Section Heading */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-sora font-bold mb-2">My <span className="text-red-500">Tech Stack</span></h2>
-        </div>
+          {/* Floating gradient orbs */}
+          <div className="absolute top-20 left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-blob"></div>
+          <div className="absolute bottom-20 right-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
 
-        {/* Bubbles Grid with 3D effects */}
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-9 gap-12 md:gap-16 lg:gap-20 max-w-7xl mx-auto place-items-center">
-          {skills.map((skill, index) => (
-            <BubbleSkill key={skill.name} skill={skill} index={index} />
-          ))}
-        </div>
-      </div>
-    </section>
+          <div className="container relative z-10">
+            {/* Section Heading */}
+            <div className="mb-16">
+              <h2 className="text-3xl font-sora font-bold mb-2">My <span className="text-red-500">Tech Stack</span></h2>
+            </div>
+
+            {/* Bubbles Grid with 3D effects */}
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-9 gap-12 md:gap-16 lg:gap-20 max-w-7xl mx-auto place-items-center">
+              {skills.map((skill, index) => (
+                <BubbleSkill key={skill.name} skill={skill} index={index} />
+              ))}
+            </div>
+          </div>
+        </section>
+      </>
   );
 }

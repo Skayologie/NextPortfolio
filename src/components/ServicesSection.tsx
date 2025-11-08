@@ -22,8 +22,8 @@ const services = [
 
 export function MyResume() {
   return (
-    <section id="services" className="container py-24">
-      <h2 className="text-3xl font-sora font-bold mb-2">My <span className="text-red-500">Resume</span></h2>
+    <section id="services" className="container py-24  z-10">
+      <h2 className="text-3xl font-sora font-bold mb-2  z-10">My <span className="text-red-500">Resume</span></h2>
       <div className="flex justify-center md:grid-cols-3 ">
         <CardInfo/>
         

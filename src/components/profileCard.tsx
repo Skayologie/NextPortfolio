@@ -10,7 +10,7 @@ const CardInfo = () => {
           name="Jawad Boulmal"
           title="Full Stack Developer"
           bio="Full-Stack Web Developer passionate about crafting dynamic, user-centric web apps. Skilled in Laravel, JavaScript, React, and Node.js, with a strong focus on clean code, intuitive UI/UX, and real-world problem-solving."
-          email="jawadboulmal@gmail.com"
+          email="me@jawadboulmal.com"
           location="Casablanca, Morocco"
           skills={["React", "Next.js", "GSAP", "PHP", "MySQL"]}
           avatarUrl={"/images/482967159_18263929492257287_4751524404743054197_n.webp"}

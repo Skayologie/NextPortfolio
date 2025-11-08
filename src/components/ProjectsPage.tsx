@@ -125,7 +125,7 @@ export function ProjectsPage(){
         }}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="group relative bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-orange-500/50 transition-all duration-500 cursor-pointer"
+        className="  z-10 group relative bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-orange-500/50 transition-all duration-500 cursor-pointer"
       >
         <div className="relative overflow-hidden">
           <div className="w-full h-48 bg-gradient-to-br from-orange-500/10 to-orange-600/5 flex items-center justify-center relative">

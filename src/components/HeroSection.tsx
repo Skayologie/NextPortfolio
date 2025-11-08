@@ -42,7 +42,7 @@ export function HeroSection() {
   }, [displayText, isDeleting, currentStack, typingSpeed, techStacks]);
 
   return (
-    <section className="relative pt-[7rem] lg:pt-0 min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative pt-[7rem] lg:pt-0 min-h-screen flex items-center justify-center overflow-hidden z-10">
       {/* Animated background blobs */}
       <div className="hero-blob hero-blob-1"></div>
       <div className="hero-blob hero-blob-2"></div>

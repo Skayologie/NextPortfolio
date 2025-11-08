@@ -15,6 +15,7 @@ import ScrollVelocity from '@/components/ui/TextAnimations/ScrollVelocity/Scroll
 import GlitchText from '@/components/ui/TextAnimations/GlitchText/GlitchText';
 import { useEffect, useState } from 'react';
 import ScrollLinked from '@/components/ScrolllLinked';
+import { GravityStarsBackground } from '@/components/animate-ui/components/backgrounds/gravity-stars';
 // import { initialBlobityOptions } from "./utils/BlobityConfig";
 // import useBlobity from "blobity/lib/react/useBlobity";
 
@@ -31,11 +32,12 @@ export default function page()  {
     // const [darkMode, setDarkMode] = useState(storedTheme);
     return (
       <div id="AllParent" className={'light-mode font-sora'}>
+        <GravityStarsBackground style={{position:"fixed" , zIndex: -1}} />
         <div className={`min-h-screen dark:bg-black dark:text-white`}>
           <ScrollLinked />
           <HeroSection />
           <SkillsSection />
-          <div className="">
+          <div className=" z-10">
             <ScrollVelocity
               //@ts-ignore
               texts={["Creative", "Fullstack","Developer"]}

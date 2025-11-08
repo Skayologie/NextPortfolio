@@ -2,12 +2,22 @@
 
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from 'react';
+import { motion, useMotionValueEvent, useScroll } from "motion/react"
 
-export function Header() {
+export  function Header() {
   const [currentTime, setCurrentTime] = useState<string>("");
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+    const { scrollYProgress } = useScroll()
   
+  const { scrollY } = useScroll()
+  const [scrollDirection, setScrollDirection] = useState("down")
+
+  useMotionValueEvent(scrollY, "change", (current) => {
+    const diff = current - (scrollY.getPrevious?.() ?? 0)
+    setScrollDirection(diff > 0 ? "down" : "up")
+  })
+
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
@@ -47,6 +57,7 @@ export function Header() {
   }, [lastScrollY]);
 
   return (
+    <>
     <header 
       className={`fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-white/5 transition-all duration-500 ease-in-out ${
         isVisible 
@@ -107,5 +118,20 @@ export function Header() {
         </div>
       </nav>
     </header>
+    <motion.div
+                id="scroll-indicator"
+                style={{
+                    scaleX: scrollYProgress,
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: 5,
+                    originX: 0,
+                    zIndex: 9999,
+                    backgroundColor: "#EF4444",
+                }}
+            />
+    </>
   );
 }

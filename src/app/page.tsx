@@ -14,6 +14,7 @@ import { motion, useMotionValue, useTransform } from 'framer-motion';
 import ScrollVelocity from '@/components/ui/TextAnimations/ScrollVelocity/ScrollVelocity';
 import GlitchText from '@/components/ui/TextAnimations/GlitchText/GlitchText';
 import { useEffect, useState } from 'react';
+import ScrollLinked from '@/components/ScrolllLinked';
 // import { initialBlobityOptions } from "./utils/BlobityConfig";
 // import useBlobity from "blobity/lib/react/useBlobity";
 
@@ -31,7 +32,7 @@ export default function page()  {
     return (
       <div id="AllParent" className={'light-mode font-sora'}>
         <div className={`min-h-screen dark:bg-black dark:text-white`}>
-          <Header />
+          <ScrollLinked />
           <HeroSection />
           <SkillsSection />
           <div className="">

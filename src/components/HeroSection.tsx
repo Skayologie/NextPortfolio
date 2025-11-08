@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import DragConstraints from "./DragConstraints";
 
 export function HeroSection() {
   const techStacks = ["Java/Angular", "Laravel/React"];
@@ -50,7 +51,6 @@ export function HeroSection() {
       <div className="container relative z-10">
         <div className="grid md:grid-cols-[1fr_auto] gap-12 items-center max-w-7xl">
           <div className="max-w-4xl">
-            {/* Hero text - Ali Yara style large typography */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -92,21 +92,9 @@ export function HeroSection() {
           </div>
 
           {/* Profile Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="hidden md:block"
-          >
-            <div className="relative w-[300px] h-[300px] lg:w-[400px] lg:h-[400px]">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-purple-500/20 blur-2xl"></div>
-              <img
-                src="/images/profile.jpg"
-                alt="Jawad Boulmal"
-                className="relative w-full h-full object-cover rounded-full border-4 border-white/10 shadow-2xl"
-              />
-            </div>
-          </motion.div>
+          {DragConstraints("./images/profile1.jpg")}
+
+          
         </div>
       </div>
     </section>

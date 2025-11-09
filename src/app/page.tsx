@@ -8,7 +8,7 @@ import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { HireMeSection } from "@/components/HireMeSection";
 import { PortfolioSection } from "@/components/PortfolioSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
-import { ProjectsPage } from "@/components/ProjectsPage";
+import ProjectsParallaxPage from "@/components/ProjectsPage";
 import { Footer } from "@/components/Footer";
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import ScrollVelocity from '@/components/ui/TextAnimations/ScrollVelocity/ScrollVelocity';
@@ -32,7 +32,7 @@ export default function page()  {
     // const storedTheme = localStorage.getItem('theme');
     // const [darkMode, setDarkMode] = useState(storedTheme);
     return (
-      <div id="AllParent" className={'light-mode font-sora'}>
+      <div id="AllParent" className={'light-mode font-sora '}>
         {/* <GravityStarsBackground style={{position:"fixed" , zIndex: -1}} /> */}
         <StarsBackground style={{position:"fixed" , zIndex: -1}} /> 
         <div className={`min-h-screen dark:bg-black dark:text-white`}>
@@ -41,14 +41,15 @@ export default function page()  {
           <SkillsSection />
           <div className=" z-10">
             <ScrollVelocity
-              //@ts-ignore
-              texts={["Creative", "Fullstack","Developer"]}
-              velocity={100} 
-              className="custom-scroll-text w-full flex justify-center text-center text-8xl  "
-            />
+                          //@ts-ignore
+  texts={['Creative', 'Full Stack', 'Developer']} 
+  velocity={100} 
+              className="custom-scroll-text flex justify-center text-center text-8xl  "
+
+/>
           </div>
           <MyResume />
-          <ProjectsPage />
+          <ProjectsParallaxPage />
           <Footer />
         </div>
       </div>

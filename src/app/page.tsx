@@ -33,17 +33,11 @@ export default function page()  {
     // const storedTheme = localStorage.getItem('theme');
     // const [darkMode, setDarkMode] = useState(storedTheme);
     return (
-      <div id="AllParent" className={'light-mode font-sora '}>
+      <div id="AllParent" className={' font-sora '}>
         {/* <GravityStarsBackground style={{position:"fixed" , zIndex: -1}} /> */}
         {/* <StarsBackground style={{position:"fixed" , zIndex: -1}} />  */}
         <Galaxy 
-          saturation={0}
-          density={1}
-          glowIntensity={0.2}
-          speed={0.3}
-          rotationSpeed={0.3}
-          
-        style={{position:"fixed" , zIndex: -1}}/>
+        style={{position:"fixed" , zIndex: -1 , background: "black"}}/>
         <div className={`min-h-screen dark:bg-black dark:text-white`}>
           <ScrollLinked />
           <HeroSection />

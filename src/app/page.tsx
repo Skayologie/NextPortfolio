@@ -17,6 +17,7 @@ import { useEffect, useState } from 'react';
 import ScrollLinked from '@/components/ScrolllLinked';
 import { GravityStarsBackground } from '@/components/animate-ui/components/backgrounds/gravity-stars';
 import { StarsBackground } from '@/components/animate-ui/components/backgrounds/stars';
+import Galaxy from '@/components/Galaxy';
 // import { initialBlobityOptions } from "./utils/BlobityConfig";
 // import useBlobity from "blobity/lib/react/useBlobity";
 
@@ -34,7 +35,15 @@ export default function page()  {
     return (
       <div id="AllParent" className={'light-mode font-sora '}>
         {/* <GravityStarsBackground style={{position:"fixed" , zIndex: -1}} /> */}
-        <StarsBackground style={{position:"fixed" , zIndex: -1}} /> 
+        {/* <StarsBackground style={{position:"fixed" , zIndex: -1}} />  */}
+        <Galaxy 
+          saturation={0}
+          density={1}
+          glowIntensity={0.2}
+          speed={0.3}
+          rotationSpeed={0.3}
+          
+        style={{position:"fixed" , zIndex: -1}}/>
         <div className={`min-h-screen dark:bg-black dark:text-white`}>
           <ScrollLinked />
           <HeroSection />

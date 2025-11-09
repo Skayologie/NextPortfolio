@@ -91,7 +91,7 @@ const ProjectParallaxCard = ({
       range={[id * 0.25, 1]} // This range might need tweaking based on totalItems
       targetScale={targetScale}
       className={cn(
-        "h-[600px] w-[900px] max-w-[90vw] bg-red-600 flex justify-center align-middle border border-white/10 bg-gray-900 p-8 shadow-2xl"
+        "h-[600px] w-[900px] max-w-[90vw] flex justify-center align-middle border border-white/10 bg-gray-900 p-8 shadow-2xl"
       )}
     >
           

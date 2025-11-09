@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import DragConstraints from "./DragConstraints";
 import Orb from "./Orb";
+import LightRays from "./LightRays";
 
 export function HeroSection() {
   const techStacks = ["Java/Angular", "Laravel/React"];
@@ -40,8 +41,11 @@ export function HeroSection() {
   }, [displayText, isDeleting, currentStack, typingSpeed, techStacks]);
 
   return (
-    <section className="relative container pt-[7rem] lg:pt-0 min-h-screen h-screen flex items-center justify-center overflow-hidden z-10">
-       <div className="hero-blob hero-blob-1"></div>
+<div className="grid h-[900px]">
+
+<section className="col-start-1 row-start-1 z-10 container pt-[7rem] lg:pt-0 flex items-center justify-self-center justify-center overflow-hidden">
+
+      <div className="hero-blob hero-blob-1"></div>
 
       <div className="hero-blob hero-blob-2"></div>
 
@@ -93,7 +97,7 @@ export function HeroSection() {
           {/* --- START OF FIXES --- */}
           
           {/* FIX 1: Changed w-full to w-[400px] to give the 'auto' column a size */}
-          <div className="relative w-[400px] h-[400px]"> 
+          <div className="relative w-[400px] h-[400px] justify-self-center"> 
             
             
             
@@ -102,14 +106,14 @@ export function HeroSection() {
               <Orb
                 hoverIntensity={1}
                 rotateOnHover={true}
-                hue={0}
+                hue={200  }
                 forceHoverState={false}
                 className="w-full h-full" // Make sure Orb fills this div
               />
             </div>
 
             {/* FIX 2 & 3: Swapped z-index & fixed component syntax */}
-            <div className="absolute inset-0 z-20 flex items-center justify-center">
+            <div style={{justifySelf:"center"}} className="absolute inset-0 z-20 flex items-center justify-center">
               {/* FIX 4: Fixed image path */}
                 {DragConstraints("./images/profile1.jpg")}
             </div>
@@ -120,5 +124,19 @@ export function HeroSection() {
         </div>
       </div>
     </section>
+    <LightRays
+        raysOrigin="top-center"
+        raysColor="#FE4444"
+        raysSpeed={1.5}
+        lightSpread={2}
+        rayLength={1.2}
+        followMouse={true}
+        mouseInfluence={1}
+        noiseAmount={0.1}
+        distortion={0.05}
+        className="custom-rays col-start-1 row-start-1 z-20 w-full h-full"
+      />
+    </div>
+
   );
 }

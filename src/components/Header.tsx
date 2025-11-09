@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from 'react';
 import { motion, useMotionValueEvent, useScroll } from "motion/react"
+import GooeyNav from "./GooeyNav";
 
 export  function Header() {
   const [currentTime, setCurrentTime] = useState<string>("");
@@ -56,6 +57,14 @@ export  function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
+  const items = [
+  { label: "Home", href: "#" },
+  { label: "Work", href: "#projects" },
+  { label: "Skills", href: "#Skills" },
+  { label: "Experiences", href: "#" },
+  { label: "Resume", href: "#services" },
+  { label: "Contact", href: "#" },
+];
   return (
     <>
     <header 
@@ -73,31 +82,23 @@ export  function Header() {
           </a>
 
           {/* Center Navigation */}
-          <ul className="hidden md:flex items-center gap-8">
-            <li><a href="#Works" className="text-sm hover:text-primary transition-colors relative group">
-              Works
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-            </a></li>
-            <li><a href="#Skills" className="text-sm hover:text-primary transition-colors relative group">
-              Skills
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-            </a></li>
-            <li><a href="#Experience" className="text-sm hover:text-primary transition-colors relative group">
-              Experience
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-            </a></li>
-            <li><a href="#Resume" className="text-sm hover:text-primary transition-colors relative group">
-              Resume
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-            </a></li>
-            <li><a href="#Contact" className="text-sm hover:text-primary transition-colors relative group">
-              Contact
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-            </a></li>
-          </ul>
+          <div className="hidden [@media(min-width:975px)]:flex">
+<GooeyNav
+              items={items}
+              particleCount={15}
+              particleDistances={[90, 10]}
+              particleR={100}
+              initialActiveIndex={0}
+              animationTime={600}
+              timeVariance={900}
+              colors={[3, 5, 21, 55]}
+            />
+          </div>
+            
+            
 
           {/* Right side - Location, Time & Status */}
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden [@media(min-width:1274px)]:flex items-center gap-6">
             <div className="flex flex-col items-end text-xs text-muted-foreground">
               <span>Marrakesh, MAR</span>
               <span className="font-mono">{currentTime || "00:00:00"}</span>
@@ -110,7 +111,7 @@ export  function Header() {
           </div>
 
           {/* Mobile menu button */}
-          <button className="md:hidden p-2">
+          <button className="md:hidden [@media(max-width:975px)]:flex p-2">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>

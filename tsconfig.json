@@ -34,7 +34,7 @@
     "next-env.d.ts",
     "tailwind.config.ts",
     ".next/types/**/*.ts"
-  ],
+, "src/hooks/useMediaQuery.js"  ],
   "exclude": [
     "node_modules"
   ]

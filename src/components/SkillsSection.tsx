@@ -186,7 +186,7 @@ const BubbleSkill = ({ skill, index }: { skill: Skill; index: number }) => {
 export function SkillsSection() {
   return (
       <>
-        <section id="Skills" className="relative py-32 overflow-hidden z-10">
+        <section id="Skills" className="relative py-32 overflow-hidden z-10 ">
 
           {/* Floating gradient orbs */}
           <div className="absolute top-20 left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-blob"></div>

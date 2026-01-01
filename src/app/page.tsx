@@ -18,6 +18,9 @@ import ScrollLinked from '@/components/ScrolllLinked';
 import { GravityStarsBackground } from '@/components/animate-ui/components/backgrounds/gravity-stars';
 import { StarsBackground } from '@/components/animate-ui/components/backgrounds/stars';
 import Galaxy from '@/components/Galaxy';
+import { Particles } from "react-tsparticles";
+import {Colors} from "next/dist/client/components/react-dev-overlay/ui/styles/colors";
+import BackgroundParticles from "@/components/BackgroundParticles";
 // import { initialBlobityOptions } from "./utils/BlobityConfig";
 // import useBlobity from "blobity/lib/react/useBlobity";
 
@@ -36,20 +39,19 @@ export default function page()  {
       <div id="AllParent" className={' font-sora '}>
         {/* <GravityStarsBackground style={{position:"fixed" , zIndex: -1}} /> */}
         {/* <StarsBackground style={{position:"fixed" , zIndex: -1}} />  */}
-        <Galaxy 
-        style={{position:"fixed" , zIndex: -1 , background: "black"}}/>
-        <div className={`min-h-screen dark:bg-black dark:text-white`}>
+
+        <div className={`min-h-screen dark:bg-black bg-black dark:text-white`}>
           <ScrollLinked />
           <HeroSection />
           <SkillsSection />
           <div className=" z-10">
             <ScrollVelocity
-                          //@ts-ignore
-  texts={['Creative', 'Full Stack', 'Developer']} 
-  velocity={100} 
-              className="custom-scroll-text flex justify-center text-center text-8xl  "
+                  //@ts-ignore
+                  texts={['Creative', 'Full Stack', 'Developer']}
+                  velocity={100}
+                              className="custom-scroll-text flex justify-center text-center text-8xl  "
 
-/>
+                />
           </div>
           <MyResume />
           <ProjectsParallaxPage />

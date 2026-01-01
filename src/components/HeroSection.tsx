@@ -41,9 +41,9 @@ export function HeroSection() {
   }, [displayText, isDeleting, currentStack, typingSpeed, techStacks]);
 
   return (
-<div className="grid h-[900px]">
+<div className="grid h-[900px] ">
 
-<section className="col-start-1 row-start-1 z-10 container pt-[7rem] lg:pt-0 flex items-center justify-self-center justify-center overflow-hidden">
+<section className="col-start-1 row-start-1 z-10 container  pt-[7rem] lg:pt-0 flex items-center justify-self-center justify-center overflow-hidden">
 
       <div className="hero-blob hero-blob-1"></div>
 

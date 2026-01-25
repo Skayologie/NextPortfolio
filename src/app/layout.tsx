@@ -1,59 +1,58 @@
+import Navbar from "@/components/navbar";
+import { ThemeProvider } from "@/components/theme-provider";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { DATA } from "@/data/resume";
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-
-// Local Sora font is now loaded via @font-face in globals.css
 import "./globals.css";
-import "./index.css";
+import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const geist = Geist({
   subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-mono",
 });
 
-export const metadata:Metadata = {
-  title: "Jawad Boulmal | Full-Stack Web Developer",
-  description:
-    "I'm Jawad Boulmal, a passionate and versatile full-stack web developer with a strong foundation in building dynamic, user-centric applications. Proficient in modern technologies like React and Next.js on the frontend, and PHP (Laravel), Node.js, and SQL on the backend, I specialize in crafting intuitive interfaces and scalable backend systems.",
-  keywords: [
-    "Jawad Boulmal",
-    "Full-Stack Developer",
-    "Web Developer",
-    "Frontend Developer",
-    "Backend Developer",
-    "Next.js Developer",
-    "React Developer",
-    "JavaScript Developer",
-    "PHP Developer",
-    "Laravel Developer",
-    "HTML CSS Developer",
-    "Tailwind CSS",
-    "Bootstrap",
-    "MySQL",
-    "Node.js",
-    "REST API Developer",
-    "Responsive Web Design",
-    "Personal Portfolio",
-    "Software Developer",
-    "Modern Web Design",
-    "Clean Code",
-    "Dynamic Websites",
-    "Freelance Developer",
-    "Junior Web Developer",
-    "Moroccan Developer",
-    "Web App Developer",
-    "SEO-Friendly Websites"
-  ],
+export const metadata: Metadata = {
+  metadataBase: new URL(DATA.url),
+  title: {
+    default: DATA.name,
+    template: `%s | ${DATA.name}`,
+  },
+  description: DATA.description,
   openGraph: {
-    title: "Jawad Boulmal | Full-Stack Web Developer",
-    description:"Explore the portfolio of Jawad Boulmal, a skilled full-stack web developer specializing in modern web technologies like React & Next.js, Laravel, and React. Discover projects, skills, and services offered.",
-    url: "https://jawadboulmal.com/",
-    siteName: "Jawad Boulmal",
+    title: `${DATA.name}`,
+    description: DATA.description,
+    url: DATA.url,
+    siteName: `${DATA.name}`,
+    locale: "en_US",
     type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  twitter: {
+    title: `${DATA.name}`,
+    card: "summary_large_image",
+  },
+  verification: {
+    google: "",
+    yandex: "",
   },
 };
 
@@ -63,16 +62,34 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        {/* Add your favicon link here */}
-        <link rel="icon" href="./images/icon.ico" />
-      </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} >
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased relative",
+          geist.variable,
+          geistMono.variable
+        )}
+      >
+        <ThemeProvider attribute="class" defaultTheme="light">
+          <TooltipProvider delayDuration={0}>
+            <div className="absolute inset-0 top-0 left-0 right-0 h-[100px] overflow-hidden z-0">
+              <FlickeringGrid
+                className="h-full w-full"
+                squareSize={2}
+                gridGap={2}
+                style={{
+                  maskImage: "linear-gradient(to bottom, black, transparent)",
+                  WebkitMaskImage: "linear-gradient(to bottom, black, transparent)",
+                }}
+              />
+            </div>
+            <div className="relative z-10 max-w-2xl mx-auto py-12 pb-24 sm:py-24 px-6">
+              {children}
+            </div>
+            <Navbar />
+          </TooltipProvider>
+        </ThemeProvider>
       </body>
-      <script src="https://kit.fontawesome.com/352cf65264.js" async></script>
-
     </html>
   );
 }

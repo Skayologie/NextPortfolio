@@ -1,3 +1,4 @@
+import { type ReactNode } from "react";
 import { Icons } from "@/components/icons";
 import { HomeIcon, NotebookIcon } from "lucide-react";
 import { ReactLight } from "@/components/ui/svgs/reactLight";
@@ -24,8 +25,14 @@ import { MySql } from "@/components/ui/svgs/mysql";
 import { Aws } from "@/components/ui/svgs/aws";
 import { Git } from "@/components/ui/svgs/git";
 
+type HackathonLink = {
+  title: string;
+  href: string;
+  icon: ReactNode;
+};
+
 export const DATA = {
-  name: "Jawad Boulmal",
+  name: "Jawad Boulmal | Full Stack Developer",
   initials: "JB",
   url: "https://jawadboulmal.com",
   location: "Casablanca, Morocco",
@@ -236,7 +243,7 @@ skills: [
         "Developed 'MediMate', an AI-powered agent designed to provide intelligent medical assistance. Spent 48 hours coding and brainstorming to address real-world problems using AI. The event included workshops on Design Thinking and AI usability, fostering a deep learning environment alongside NBS Consulting and OCP Group.",
       image: "https://yt3.googleusercontent.com/huTnJOi3K2Jj3QAsfoZ6igbKyoqvBypFlx2u2Iyvi7EJ8fotMFhqMziExWuG575N5Ze51JokFA=s160-c-k-c0x00ffffff-no-rj", // Make sure to add this image to your public folder
       mlh: "",
-      links: [],
+      links: [] as HackathonLink[],
     },
     {
       title: "YouCode X Sofrecom Hackathon",
@@ -246,7 +253,15 @@ skills: [
         "An inspiring experience of collaboration and building under pressure. Worked with a dedicated team to push our limits and demonstrate the true power of collective effort. A test of commitment and creativity that resulted in a project we were genuinely proud of.",
       image: "https://media.licdn.com/dms/image/v2/D4D0BAQEDUXy_s0nk_g/company-logo_200_200/company-logo_200_200/0/1711535701567/sofrecom_maroc_logo?e=1770854400&v=beta&t=cfgRYfmVr5iY8Of3tFiy6b4gcVyA_QVKE81My_6JceE",
       mlh: "",
-      links: [],
+      links: [] as HackathonLink[],
     },
-  ],
+  ] satisfies {
+    title: string;
+    dates: string;
+    location: string;
+    description: string;
+    image?: string;
+    mlh?: string;
+    links: HackathonLink[];
+  }[],
 } as const;

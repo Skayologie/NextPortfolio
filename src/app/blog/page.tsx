@@ -5,18 +5,85 @@ import type { Metadata } from "next";
 import { paginate, normalizePage } from "@/lib/pagination";
 import { ChevronRight } from "lucide-react";
 
+import { DATA } from "@/data/resume";
+
 export const metadata: Metadata = {
   title: "Blog",
-  description: "Thoughts on software development, life, and more.",
+  description: "Thoughts on software development, full stack programming, Java, Angular, React, and more technical insights from Jawad Boulmal.",
+  keywords: [
+    "Jawad Boulmal Blog",
+    "Full Stack Developer Blog",
+    "Java Programming",
+    "Angular Development",
+    "React Tutorials",
+    "Spring Boot",
+    "TypeScript",
+    "Web Development",
+    "Software Engineering",
+    "Programming Tips",
+    "Tech Articles",
+    "Developer Insights",
+    "Morocco Developer",
+    "Backend Development",
+    "Frontend Development"
+  ],
+  authors: [
+    {
+      name: "Jawad Boulmal",
+      url: DATA.url,
+    },
+  ],
+  creator: "Jawad Boulmal",
+  publisher: "Jawad Boulmal",
   openGraph: {
-    title: "Blog",
-    description: "Thoughts on software development, life, and more.",
+    title: "Blog | Jawad Boulmal",
+    description: "Thoughts on software development, full stack programming, Java, Angular, React, and more technical insights from Jawad Boulmal.",
+    url: `${DATA.url}/blog`,
+    siteName: DATA.name,
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: `${DATA.url}/blog/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Jawad Boulmal Blog - Full Stack Developer",
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog",
-    description: "Thoughts on software development, life, and more.",
+    title: "Blog | Jawad Boulmal",
+    description: "Thoughts on software development, full stack programming, Java, Angular, React, and more technical insights.",
+    creator: "@jawadboulmal", // Add your Twitter handle
+    images: [`${DATA.url}/blog/opengraph-image`],
   },
+  alternates: {
+    canonical: `${DATA.url}/blog`,
+    types: {
+      "application/rss+xml": [
+        {
+          url: `${DATA.url}/blog/rss.xml`,
+          title: "Jawad Boulmal Blog RSS Feed",
+        },
+      ],
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  category: "technology",
 };
 
 const PAGE_SIZE = 5;

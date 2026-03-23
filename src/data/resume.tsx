@@ -24,6 +24,8 @@ import { MongoDb } from "@/components/ui/svgs/mongoDb";
 import { MySql } from "@/components/ui/svgs/mysql";
 import { Aws } from "@/components/ui/svgs/aws";
 import { Git } from "@/components/ui/svgs/git";
+import { Ruby } from "@/components/ui/svgs/ruby";
+import { Rails } from "@/components/ui/svgs/rails";
 
 type HackathonLink = {
   title: string;
@@ -38,10 +40,10 @@ export const DATA = {
   location: "Casablanca, Morocco",
   locationLink: "https://www.google.com/maps/place/casablanca",
   description:
-    "Full Stack Developer (Java/Angular). I love building robust architectures and solving complex backend problems. Open to new opportunities .",
+    "Full Stack Developer . I love building robust architectures and solving complex backend problems. Open to new opportunities .",
   summary:
     "Currently, I am a Full Stack Java/Angular Developer motivated by creating performant and reliable web solutions. I am completing my training at YouCode - UM6P, where I specialize in Java/JEE and modern web frameworks. Recently, I completed a development internship at MediaVerse, where I helped build the 'Qarib' application using Nest.js and Flutter. I also enjoy building complex backend architectures, having developed a B2B management system called SmartShop and a collaborative platform for developers called DevHub.",
-  avatarUrl: "/profile1.jpg",
+  avatarUrl: "/web-app-manifest-512x512.png",
 skills: [
     // Row 1
     { name: "Java", icon: Java },
@@ -53,7 +55,7 @@ skills: [
     { name: "Angular", icon: Angular },
     { name: "Node.js", icon: Nodejs },
     { name: "Express", icon: Express },
-    
+
     // Row 2
     { name: "Tailwind CSS", icon: Tailwind },
     { name: "PHP", icon: Php },
@@ -64,6 +66,8 @@ skills: [
     { name: "AWS", icon: Aws },
     { name: "Docker", icon: Docker },
     { name: "Git", icon: Git },
+    { name: "Ruby", icon: Ruby },
+    { name: "Ruby on Rails", icon: Rails },
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
@@ -99,17 +103,29 @@ skills: [
 
   work: [
     {
+      company: "DabaDoc",
+      href: "https://www.dabadoc.com/ma", // Add company URL if available
+      badges: [],
+      location: "Casablanca, Morocco",
+      title: "Fullstack developer Ruby on rails & Angular & React.js",
+      logoUrl: "/dabadoc.png", // Make sure to add this image to your public folder
+      start: "February 2026",
+      end: "Now",
+      description:
+          "Au sein de l'équipe technique de DabaDoc, je participe au développement de solutions de santé numérique innovantes. Mon travail se concentre sur la conception de fonctionnalités robustes en Ruby côté backend, alliées à des interfaces réactives et performantes développées avec Angular et React. J'interviens sur l'ensemble de la chaîne de valeur, de la prise de rendez-vous en ligne à la gestion complexe de cabinets médicaux.",
+    },
+    {
       company: "MediaVerse",
       href: "#", // Add company URL if available
       badges: [],
       location: "Safi, Morocco",
-      title: "Stage de développement",
+      title: "Fullstack Web/Mobile developer React ,Nest.js ,Next.js , Flutter",
       logoUrl: "/mediaverse.png", // Make sure to add this image to your public folder
       start: "Juin 2025",
       end: "Août 2025",
       description:
         "Contribution au développement de l'application 'Qarib'. Participation à la mise en place des fonctionnalités principales : Géolocalisation, Recherche et Filtrage des services. Optimisation de l'interface utilisateur (UI). Travail sur le backend avec Nest.js ainsi que sur le développement du tableau de bord administrateur. Technologies utilisées : Flutter, Nest.js, Next.js.",
-    },
+    }
   ],
   education: [
     {
@@ -118,7 +134,7 @@ skills: [
       degree: "Développeur Web Full Stack (Java/Angular/Spring)",
       logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIgHO_Fr0TwBcMUJ_e-DBJkPTKSNgux8YZqA&s",
       start: "2024",
-      end: "Présent",
+      end: "2026",
     },
     {
       school: "Lycée Albouhtouri Casablanca",
@@ -130,6 +146,30 @@ skills: [
     },
   ],
   projects: [
+    {
+      title: "L'7sab App",
+      href: "https://www.l7sab.me",
+      dates: "Projet en cours",
+      active: true,
+      description:
+          "Application collaborative de gestion et de partage de dépenses de groupe. Permet la création de groupes, le suivi des transactions en temps réel et le calcul automatique des équilibres pour simplifier les remboursements entre participants. Focus sur une interface intuitive et une gestion précise des dettes.",
+      technologies: [
+        "Java",
+        "Springboot",
+        "PostgreSQL",
+        "Next.js",
+        "Tailwind CSS",
+        "REST API",
+      ],
+      links: [
+        {
+          type: "Application",
+          href: "https://github.com/Jawadboulmal",
+        },
+      ],
+      image: "/l7sabApp.png",
+      video: "",
+    },
     {
       title: "SmartShop",
       href: "https://github.com/Jawadboulmal",
@@ -251,7 +291,7 @@ skills: [
       location: "Youssoufia, Morocco",
       description:
         "An inspiring experience of collaboration and building under pressure. Worked with a dedicated team to push our limits and demonstrate the true power of collective effort. A test of commitment and creativity that resulted in a project we were genuinely proud of.",
-      image: "https://media.licdn.com/dms/image/v2/D4D0BAQEDUXy_s0nk_g/company-logo_200_200/company-logo_200_200/0/1711535701567/sofrecom_maroc_logo?e=1770854400&v=beta&t=cfgRYfmVr5iY8Of3tFiy6b4gcVyA_QVKE81My_6JceE",
+      image: "/sofrecom.jpg",
       mlh: "",
       links: [] as HackathonLink[],
     },

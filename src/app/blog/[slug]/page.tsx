@@ -44,31 +44,75 @@ export async function generateMetadata({
     image,
   } = post;
 
+  const ogImage = image ? `${DATA.url}${image}` : `${DATA.url}/blog/${slug}/opengraph-image`;
+
   return {
     title,
     description,
+    keywords: [
+      "Jawad Boulmal",
+      "Blog",
+      "Full Stack Developer",
+      "Programming",
+      "Web Development",
+      "Tutorial",
+      "Tech Article",
+      ...title.split(" ").filter(word => word.length > 3)
+    ],
+    authors: [
+      {
+        name: "Jawad Boulmal",
+        url: DATA.url,
+      },
+    ],
+    creator: "Jawad Boulmal",
+    publisher: "Jawad Boulmal",
     openGraph: {
       title,
       description,
       type: "article",
       publishedTime,
+      modifiedTime: publishedTime,
       url: `${DATA.url}/blog/${slug}`,
-      ...(image && {
-        images: [
-          {
-            url: `${DATA.url}${image}`,
-          },
-        ],
-      }),
+      siteName: DATA.name,
+      locale: "en_US",
+      authors: ["Jawad Boulmal"],
+      section: "Technology",
+      tags: title.split(" ").filter(word => word.length > 3),
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: title,
+          type: "image/png",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      ...(image && {
-        images: [`${DATA.url}${image}`],
-      }),
+      creator: "@jawadboulmal", // Add your Twitter handle
+      images: [ogImage],
     },
+    alternates: {
+      canonical: `${DATA.url}/blog/${slug}`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      nocache: false,
+      googleBot: {
+        index: true,
+        follow: true,
+        noimageindex: false,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    category: "technology",
   };
 }
 

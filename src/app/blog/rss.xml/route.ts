@@ -1,14 +1,6 @@
-import { allPosts } from '@/.content-collections/generated'
 import { DATA } from '@/data/resume'
 
 export async function GET() {
-  const sortedPosts = [...allPosts].sort((a, b) => {
-    if (new Date(a.publishedAt) > new Date(b.publishedAt)) {
-      return -1
-    }
-    return 1
-  })
-
   const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
@@ -29,22 +21,17 @@ export async function GET() {
       <width>144</width>
       <height>144</height>
     </image>
-    ${sortedPosts
-      .map(
-        (post) => `
     <item>
-      <title><![CDATA[${post.title}]]></title>
-      <description><![CDATA[${post.summary}]]></description>
-      <link>${DATA.url}/blog/${post._meta.path.replace(/\.mdx$/, '')}</link>
-      <guid isPermaLink="true">${DATA.url}/blog/${post._meta.path.replace(/\.mdx$/, '')}</guid>
-      <pubDate>${new Date(post.publishedAt).toUTCString()}</pubDate>
+      <title><![CDATA[Welcome to My Blog]]></title>
+      <description><![CDATA[Welcome to my technical blog where I share insights about full stack development, Java, Angular, React, and more.]]></description>
+      <link>${DATA.url}/blog</link>
+      <guid isPermaLink="true">${DATA.url}/blog</guid>
+      <pubDate>${new Date().toUTCString()}</pubDate>
       <author>${DATA.contact.email} (Jawad Boulmal)</author>
       <category>Technology</category>
       <category>Programming</category>
       <category>Web Development</category>
-    </item>`
-      )
-      .join('')}
+    </item>
   </channel>
 </rss>`
 

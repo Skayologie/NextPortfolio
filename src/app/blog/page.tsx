@@ -61,14 +61,6 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: `${DATA.url}/blog`,
-    types: {
-      "application/rss+xml": [
-        {
-          url: `${DATA.url}/blog/rss.xml`,
-          title: "Jawad Boulmal Blog RSS Feed",
-        },
-      ],
-    },
   },
   robots: {
     index: true,

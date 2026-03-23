@@ -5,13 +5,8 @@ import { ReactLight } from "@/components/ui/svgs/reactLight";
 import { NextjsIconDark } from "@/components/ui/svgs/nextjsIconDark";
 import { Typescript } from "@/components/ui/svgs/typescript";
 import { Nodejs } from "@/components/ui/svgs/nodejs";
-import { Python } from "@/components/ui/svgs/python";
-import { Golang } from "@/components/ui/svgs/golang";
-import { Postgresql } from "@/components/ui/svgs/postgresql";
 import { Docker } from "@/components/ui/svgs/docker";
-import { Kubernetes } from "@/components/ui/svgs/kubernetes";
 import { Java } from "@/components/ui/svgs/java";
-import { Csharp } from "@/components/ui/svgs/csharp";
 import { SpringBoot } from "@/components/ui/svgs/springBoot";
 import { Javascript } from "@/components/ui/svgs/javascript";
 import { Angular } from "@/components/ui/svgs/angular";
@@ -165,6 +160,7 @@ skills: [
         {
           type: "Application",
           href: "https://github.com/Jawadboulmal",
+          icon: <Icons.github className="size-3" />,
         },
       ],
       image: "/l7sabApp.png",

@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/SHDownload/(.*\\.(sh|ps1))",
+      "source": "/SHDownload/install.ps1",
       "headers": [
         {
           "key": "Content-Type",

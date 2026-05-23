@@ -16,12 +16,13 @@ $BaseUrl = "https://raw.githubusercontent.com/Skayologie/SHDownloader/main"
 Write-Host "[1/4] Downloading application files..." -ForegroundColor Yellow
 Invoke-WebRequest -Uri "$BaseUrl/shdownloader.py" -OutFile (Join-Path $InstallDir "shdownloader.py")
 Invoke-WebRequest -Uri "$BaseUrl/shDownload.bat" -OutFile (Join-Path $InstallDir "shDownload.bat")
+Invoke-WebRequest -Uri "$BaseUrl/requirements.txt" -OutFile (Join-Path $InstallDir "requirements.txt")
 
 # 3. Handle Python dependencies cleanly with the full extras flag
 Write-Host "[2/4] Syncing Python dependencies..." -ForegroundColor Yellow
 if (Get-Command python -ErrorAction SilentlyContinue) {
-    # Installing "yt-dlp[default]" forces the inclusion of ejs challenge solvers
-    python -m pip install --upgrade "yt-dlp[default]" --quiet
+    $ReqPath = Join-Path $InstallDir "requirements.txt"
+    python -m pip install --upgrade -r "$ReqPath" --quiet
 } else {
     Write-Host "Warning: Python execution engine not found on system PATH." -ForegroundColor Red
 }

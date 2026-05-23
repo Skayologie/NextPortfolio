@@ -27,6 +27,9 @@ echo -e "${YELLOW}[1/4] Downloading application files...${NC}"
 # Download the python engine file
 curl -fsSL "$BaseUrl/shdownloader.py" -o "$InstallDir/shdownloader.py"
 
+# Download the requirements file
+curl -fsSL "$BaseUrl/requirements.txt" -o "$InstallDir/requirements.txt"
+
 # Download or dynamically create the native bash runner file (Replaces shDownload.bat)
 cat << 'EOF' > "$InstallDir/shDownload"
 #!/bin/bash
@@ -40,7 +43,7 @@ chmod +x "$InstallDir/shDownload"
 # 3. Handle Python dependencies cleanly
 echo -e "${YELLOW}[2/4] Syncing Python dependencies...${NC}"
 if command -v python3 &> /dev/null; then
-    python3 -m pip install --upgrade "yt-dlp[default]" --quiet
+    python3 -m pip install --upgrade -r "$InstallDir/requirements.txt" --quiet
 else
     echo -e "${RED}Warning: Python execution engine not found on system PATH.${NC}"
 fi

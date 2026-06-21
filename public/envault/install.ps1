@@ -1,6 +1,9 @@
 # envault - Windows installer
 # Usage: irm https://jawadboulmal.com/envault/install.ps1 | iex
 
+# Allow .ps1 scripts (like npm.ps1) to run in this session only
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
+
 $ErrorActionPreference = 'Stop'
 
 function Write-Header {

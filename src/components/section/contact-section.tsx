@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 import { DATA } from "@/data/resume";
+import { ContactForm } from "@/components/section/contact-form";
 
 export default function ContactSection() {
   return (
@@ -19,12 +20,12 @@ export default function ContactSection() {
           }}
         />
       </div>
-      <div className="relative flex flex-col items-center gap-4 text-center">
+      <div className="relative flex flex-col items-center gap-6 text-center">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
           Get in Touch
         </h2>
         <p className="mx-auto max-w-lg text-muted-foreground text-balance">
-          Want to chat? Just shoot {" "}
+          Want to chat? Just shoot{" "}
           <Link
             href={DATA.contact.social.email.url}
             target="_blank"
@@ -33,10 +34,12 @@ export default function ContactSection() {
           >
             with a direct email
           </Link>{" "}
-          and I&apos;ll respond whenever I can.
+          and I&apos;ll respond whenever I can. Or fill in the form below.
         </p>
+        <div className="w-full max-w-lg text-left">
+          <ContactForm />
+        </div>
       </div>
     </div>
   );
 }
-

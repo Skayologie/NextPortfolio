@@ -1,10 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { DATA } from "@/data/resume";
 import { Timeline, TimelineItem, TimelineConnectItem } from "@/components/timeline";
+import { getHackathons, type HackathonLink } from "@/lib/portfolio-data";
+import { Icons } from "@/components/icons";
 
-export default function HackathonsSection() {
+function resolveIcon(iconType: HackathonLink["icon_type"]) {
+  if (iconType === "github") return <Icons.github className="size-3" />;
+  return <Icons.globe className="size-3" />;
+}
+
+export default async function HackathonsSection() {
+  const hackathons = await getHackathons();
+
   return (
     <section id="hackathons" className="overflow-hidden">
       <div className="flex min-h-0 flex-col gap-y-8 w-full">
@@ -19,14 +27,14 @@ export default function HackathonsSection() {
           <div className="flex flex-col gap-y-3 items-center justify-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">I like building things</h2>
             <p className="text-muted-foreground md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed text-balance text-center">
-              For me, hackathons are more than just competitions they are intense, hours sprints of innovation. 
-              From sleepless nights building AI solutions like MediMate to collaborating under pressure at YouCode, 
-              I've learned that the true magic happens not just in the lines of code, but when passionate people come together to solve real-world problems.
+              For me, hackathons are more than just competitions they are intense, hours sprints of innovation.
+              From sleepless nights building AI solutions like MediMate to collaborating under pressure at YouCode,
+              I&apos;ve learned that the true magic happens not just in the lines of code, but when passionate people come together to solve real-world problems.
             </p>
           </div>
         </div>
         <Timeline>
-          {DATA.hackathons.map((hackathon) => (
+          {hackathons.map((hackathon) => (
             <TimelineItem key={hackathon.title + hackathon.dates} className="w-full flex items-start justify-between gap-10">
               <TimelineConnectItem className="flex items-start justify-center">
                 {hackathon.image ? (
@@ -64,7 +72,7 @@ export default function HackathonsSection() {
                         rel="noopener noreferrer"
                       >
                         <Badge className="flex items-center gap-1.5 text-xs bg-primary text-primary-foreground">
-                          {link.icon}
+                          {resolveIcon(link.icon_type)}
                           {link.title}
                         </Badge>
                       </Link>

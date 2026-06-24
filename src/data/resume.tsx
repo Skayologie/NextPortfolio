@@ -142,6 +142,84 @@ skills: [
   ],
   projects: [
     {
+      title: "envault",
+      href: "https://github.com/Skayologie/envault",
+      dates: "June 2026",
+      active: true,
+      description:
+        "Zero-cloud, git-native .env encryption for teams. Share secrets securely through your existing Git repository using hybrid AES-256-GCM + RSA-4096 encryption — no third-party services, no monthly fees, no DevOps overhead. Published on npm.",
+      technologies: [
+        "TypeScript",
+        "AES-256-GCM",
+        "RSA-4096",
+        "CLI",
+        "npm",
+        "Git",
+      ],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Skayologie/envault",
+          icon: <Icons.github className="size-3" />,
+        },
+        {
+          type: "npm",
+          href: "https://www.npmjs.com/package/@jawadboulmal/envault",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image: "/envault/cover.jpg",
+      video: "",
+    },
+    {
+      title: "WorkPilot",
+      href: "https://github.com/Skayologie/WorkPilot",
+      dates: "June 2026",
+      active: true,
+      description:
+        "A personal work environment manager for Windows. One command starts everything you need for your day: Docker, VS Code, Chrome tabs, and project services. One command stops it all. A Telegram bot lets you control everything remotely from your phone.",
+      technologies: [
+        "PowerShell",
+        "Python",
+        "Telegram Bot API",
+        "Docker",
+        "Claude CLI",
+      ],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Skayologie/WorkPilot",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/workpilot/cover.jpg",
+      video: "",
+    },
+    {
+      title: "SHDownloader",
+      href: "https://github.com/Skayologie/SHDownloader",
+      dates: "May 2026",
+      active: true,
+      description:
+        "A lightweight, terminal-based YouTube video and audio downloader powered by Python. Features one-command installation (Windows & macOS/Linux), smart playlist detection, auto-organization, and built-in self-updating via yt-dlp.",
+      technologies: [
+        "Python",
+        "yt-dlp",
+        "CLI",
+        "PowerShell",
+        "Bash",
+      ],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Skayologie/SHDownloader",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/SHDownload/cover.jpg",
+      video: "",
+    },
+    {
       title: "L'7sab App",
       href: "https://www.l7sab.me",
       dates: "Projet en cours",
@@ -268,7 +346,7 @@ skills: [
       ],
       image: "/projects/Eventbrite.png",
       video: "",
-    }
+    },
   ],
   hackathons: [
     {

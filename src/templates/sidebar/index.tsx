@@ -7,6 +7,7 @@ import { ContactForm } from "@/components/section/contact-form";
 import { SKILL_ICONS } from "@/lib/skill-icons";
 import { Icons } from "@/components/icons";
 import { GoogleFontLoader } from "@/components/google-font-loader";
+import { ProjectsPaginated } from "@/components/section/projects-paginated";
 import type { PortfolioData } from "@/templates/types";
 
 // ── "Chiang" ─ Inspired by Brittany Chiang's brittanychiang.com ──
@@ -170,7 +171,7 @@ export default function SidebarTemplate({ data }: { data: PortfolioData }) {
             <NumTag n="05" /> Projects
             <span className="flex-1 h-px bg-border ml-4" />
           </h2>
-          <div className="flex flex-col gap-5">
+          <ProjectsPaginated className="flex flex-col gap-5">
             {projects.map(p => (
               <div key={p.title} className="group flex flex-col sm:flex-row gap-4 border border-border rounded-xl bg-card/50 overflow-hidden hover:shadow-lg transition-all hover:border-primary/30">
                 {p.image && <img src={p.image} alt={p.title} className="w-full sm:w-40 h-40 sm:h-auto object-cover shrink-0" />}
@@ -192,7 +193,7 @@ export default function SidebarTemplate({ data }: { data: PortfolioData }) {
                 </div>
               </div>
             ))}
-          </div>
+          </ProjectsPaginated>
         </section>
 
         {/* Hackathons */}

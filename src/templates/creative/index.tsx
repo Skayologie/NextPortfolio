@@ -7,6 +7,7 @@ import { ContactForm } from "@/components/section/contact-form";
 import { SKILL_ICONS } from "@/lib/skill-icons";
 import { Icons } from "@/components/icons";
 import { GoogleFontLoader } from "@/components/google-font-loader";
+import { ProjectsPaginated } from "@/components/section/projects-paginated";
 import type { PortfolioData } from "@/templates/types";
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -122,7 +123,7 @@ export default function CreativeTemplate({ data }: { data: PortfolioData }) {
         {/* Projects */}
         <section>
           <SectionLabel>Projects</SectionLabel>
-          <div className="grid sm:grid-cols-2 gap-3">
+          <ProjectsPaginated className="grid sm:grid-cols-2 gap-3">
             {projects.map(p => (
               <div key={p.title} className="group flex flex-col rounded-xl bg-white/[0.04] border border-white/[0.08] overflow-hidden hover:border-indigo-500/30 hover:shadow-xl hover:shadow-indigo-900/20 transition-all">
                 {p.image
@@ -146,7 +147,7 @@ export default function CreativeTemplate({ data }: { data: PortfolioData }) {
                 </div>
               </div>
             ))}
-          </div>
+          </ProjectsPaginated>
         </section>
 
         {/* Hackathons */}

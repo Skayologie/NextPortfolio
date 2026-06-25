@@ -6,6 +6,7 @@ import { ContactForm } from "@/components/section/contact-form";
 import { SKILL_ICONS } from "@/lib/skill-icons";
 import { Icons } from "@/components/icons";
 import { GoogleFontLoader } from "@/components/google-font-loader";
+import { ProjectsPaginated } from "@/components/section/projects-paginated";
 import type { PortfolioData } from "@/templates/types";
 
 // ── "Noir" ─ Inspired by Emil Kowalski's dark-premium portfolio ──
@@ -122,7 +123,7 @@ export default function TerminalTemplate({ data }: { data: PortfolioData }) {
         {/* Projects */}
         <section className="mb-20">
           <Sec n="05" title="Projects" />
-          <div className="grid sm:grid-cols-2 gap-3">
+          <ProjectsPaginated className="grid sm:grid-cols-2 gap-3">
             {projects.map(p => (
               <div key={p.title} className="rounded-xl border border-zinc-800 bg-zinc-900/50 overflow-hidden group hover:border-zinc-700 transition-all">
                 {p.image
@@ -146,7 +147,7 @@ export default function TerminalTemplate({ data }: { data: PortfolioData }) {
                 </div>
               </div>
             ))}
-          </div>
+          </ProjectsPaginated>
         </section>
 
         {/* Hackathons */}

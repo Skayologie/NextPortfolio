@@ -7,6 +7,7 @@ import { ContactForm } from "@/components/section/contact-form";
 import { SKILL_ICONS } from "@/lib/skill-icons";
 import { Icons } from "@/components/icons";
 import { GoogleFontLoader } from "@/components/google-font-loader";
+import { ProjectsPaginated } from "@/components/section/projects-paginated";
 import type { PortfolioData } from "@/templates/types";
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
@@ -130,7 +131,7 @@ export default function BentoTemplate({ data }: { data: PortfolioData }) {
       {/* Projects */}
       <section>
         <SectionTitle>Projects</SectionTitle>
-        <div className="flex flex-col gap-4">
+        <ProjectsPaginated className="flex flex-col gap-4">
           {projects.map(p => (
             <div key={p.title} className="flex flex-col sm:flex-row gap-4 border border-border rounded-2xl bg-card overflow-hidden hover:shadow-md transition-shadow">
               {p.image && <img src={p.image} alt={p.title} className="w-full sm:w-36 h-40 sm:h-auto object-cover shrink-0" />}
@@ -158,7 +159,7 @@ export default function BentoTemplate({ data }: { data: PortfolioData }) {
               </div>
             </div>
           ))}
-        </div>
+        </ProjectsPaginated>
       </section>
 
       {/* Hackathons */}

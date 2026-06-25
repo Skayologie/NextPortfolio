@@ -9,6 +9,7 @@ import { ContactForm } from "@/components/section/contact-form";
 import { SKILL_ICONS } from "@/lib/skill-icons";
 import { Icons } from "@/components/icons";
 import { GoogleFontLoader } from "@/components/google-font-loader";
+import { ProjectsPaginated } from "@/components/section/projects-paginated";
 import type { PortfolioData } from "@/templates/types";
 
 const D = 0.04;
@@ -112,7 +113,7 @@ export default function MinimalTemplate({ data }: { data: PortfolioData }) {
       <BlurFade delay={D * 11}>
         <section className="flex flex-col gap-6">
           <h2 className="text-xl font-bold">Projects</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <ProjectsPaginated className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {projects.map(p => (
               <div key={p.title} className="border border-border rounded-xl overflow-hidden bg-card flex flex-col">
                 {p.image && <img src={p.image} alt={p.title} className="w-full h-36 object-cover" />}
@@ -125,7 +126,7 @@ export default function MinimalTemplate({ data }: { data: PortfolioData }) {
                 </div>
               </div>
             ))}
-          </div>
+          </ProjectsPaginated>
         </section>
       </BlurFade>
 

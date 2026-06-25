@@ -6,6 +6,7 @@ import { SKILL_ICONS } from "@/lib/skill-icons";
 import { Icons } from "@/components/icons";
 import { BuddyFooter } from "./buddy-footer";
 import { GoogleFontLoader } from "@/components/google-font-loader";
+import { ProjectsPaginated } from "@/components/section/projects-paginated";
 import type { PortfolioData } from "@/templates/types";
 
 function SecTitle({ children }: { children: React.ReactNode }) {
@@ -153,7 +154,7 @@ export default function BuddyTemplate({ data }: { data: PortfolioData }) {
         {/* ── PROJECTS ── */}
         <section id="buddy-projects">
           <SecTitle>Projects</SecTitle>
-          <div className="grid sm:grid-cols-2 gap-3">
+          <ProjectsPaginated className="grid sm:grid-cols-2 gap-3">
             {projects.map(p => (
               <div
                 key={p.title}
@@ -183,7 +184,7 @@ export default function BuddyTemplate({ data }: { data: PortfolioData }) {
                 </div>
               </div>
             ))}
-          </div>
+          </ProjectsPaginated>
         </section>
 
         {/* ── HACKATHONS ── */}

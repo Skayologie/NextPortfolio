@@ -6,6 +6,7 @@ import { ContactForm } from "@/components/section/contact-form";
 import { SKILL_ICONS } from "@/lib/skill-icons";
 import { Icons } from "@/components/icons";
 import { GoogleFontLoader } from "@/components/google-font-loader";
+import { ProjectsPaginated } from "@/components/section/projects-paginated";
 import type { PortfolioData } from "@/templates/types";
 
 function GlassCard({ className = "", style, children }: { className?: string; style?: React.CSSProperties; children: React.ReactNode }) {
@@ -136,7 +137,7 @@ export default function GlassTemplate({ data }: { data: PortfolioData }) {
         {/* Projects */}
         <section>
           <SecLabel>Projects</SecLabel>
-          <div className="grid sm:grid-cols-2 gap-3">
+          <ProjectsPaginated className="grid sm:grid-cols-2 gap-3">
             {projects.map(p => (
               <GlassCard key={p.title} className="overflow-hidden flex flex-col hover:border-teal-500/20 hover:shadow-[0_0_20px_rgba(20,184,166,0.06)] transition-all">
                 {p.image
@@ -160,7 +161,7 @@ export default function GlassTemplate({ data }: { data: PortfolioData }) {
                 </div>
               </GlassCard>
             ))}
-          </div>
+          </ProjectsPaginated>
         </section>
 
         {/* Hackathons */}

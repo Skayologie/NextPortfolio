@@ -7,6 +7,7 @@ import { ContactForm } from "@/components/section/contact-form";
 import { SKILL_ICONS } from "@/lib/skill-icons";
 import { Icons } from "@/components/icons";
 import { GoogleFontLoader } from "@/components/google-font-loader";
+import { ProjectsPaginated } from "@/components/section/projects-paginated";
 import type { PortfolioData } from "@/templates/types";
 
 const Divider = ({ label }: { label: string }) => (
@@ -90,7 +91,7 @@ export default function MagazineTemplate({ data }: { data: PortfolioData }) {
       </div>
 
       <Divider label="Projects" />
-      <div className="flex flex-col gap-6">
+      <ProjectsPaginated className="flex flex-col gap-6">
         {projects.map(p => (
           <div key={p.title} className="flex flex-col sm:flex-row gap-4 p-5 border-2 border-border rounded-2xl hover:border-foreground transition-colors">
             {p.image && <img src={p.image} alt={p.title} className="w-full sm:w-40 h-32 sm:h-auto object-cover rounded-xl shrink-0" />}
@@ -103,7 +104,7 @@ export default function MagazineTemplate({ data }: { data: PortfolioData }) {
             </div>
           </div>
         ))}
-      </div>
+      </ProjectsPaginated>
 
       <Divider label="Hackathons" />
       <div className="grid sm:grid-cols-2 gap-4">

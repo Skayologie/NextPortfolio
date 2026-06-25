@@ -1,25 +1,43 @@
-import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 import { StructuredData } from "@/components/structured-data";
+import { getActiveTheme } from "@/lib/portfolio-data";
+import { buildThemeCSS, googleFontURL } from "@/lib/themes";
+import type { ThemeKey } from "@/lib/themes";
 
 const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-geist-sans",
   weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-mono",
+  variable: "--font-geist-mono",
 });
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-jakarta",
+});
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  colorScheme: "light dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(DATA.url),
@@ -144,17 +162,6 @@ export const metadata: Metadata = {
   category: "technology",
   classification: "Portfolio Website",
   referrer: "origin-when-cross-origin",
-  colorScheme: "light dark",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
-  ],
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-  },
   alternates: {
     canonical: DATA.url,
     languages: {
@@ -165,41 +172,38 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { themeKey, fontFamily } = await getActiveTheme();
+  const themeCSS = buildThemeCSS(themeKey as ThemeKey, fontFamily);
+  const gFontURL = googleFontURL(fontFamily);
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <StructuredData />
+        {gFontURL && (
+          <>
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+            <link rel="stylesheet" href={gFontURL} />
+          </>
+        )}
+        <style dangerouslySetInnerHTML={{ __html: themeCSS }} />
       </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased relative",
           geist.variable,
-          geistMono.variable
+          geistMono.variable,
+          jakarta.variable,
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="light">
-          <TooltipProvider delayDuration={0}>
-            <div className="absolute inset-0 top-0 left-0 right-0 h-[100px] overflow-hidden z-0">
-              <FlickeringGrid
-                className="h-full w-full"
-                squareSize={2}
-                gridGap={2}
-                style={{
-                  maskImage: "linear-gradient(to bottom, black, transparent)",
-                  WebkitMaskImage: "linear-gradient(to bottom, black, transparent)",
-                }}
-              />
-            </div>
-            <div className="relative z-10 max-w-2xl mx-auto py-12 pb-24 sm:py-24 px-6">
-              {children}
-            </div>
-            <Navbar />
-          </TooltipProvider>
+          {children}
         </ThemeProvider>
       </body>
     </html>

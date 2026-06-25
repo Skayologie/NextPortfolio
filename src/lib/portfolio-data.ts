@@ -28,6 +28,59 @@ export type HeroData = {
   avatarUrl: string;
 };
 
+export type SkillData = {
+  id: string;
+  name: string;
+  iconKey: string;
+  iconUrl: string;
+  sortOrder: number;
+};
+
+const NAME_TO_KEY: Record<string, string> = {
+  "Java": "java", "Spring Boot": "spring_boot", "JavaScript": "javascript",
+  "TypeScript": "typescript", "React": "react", "Next.js": "nextjs",
+  "Angular": "angular", "Node.js": "nodejs", "Express": "express",
+  "Tailwind CSS": "tailwind", "PHP": "php", "Laravel": "laravel",
+  "Firebase": "firebase", "MongoDB": "mongodb", "MySQL": "mysql",
+  "AWS": "aws", "Docker": "docker", "Git": "git",
+  "Ruby": "ruby", "Ruby on Rails": "rails",
+};
+
+export async function getSkills(): Promise<SkillData[]> {
+  try {
+    const supabase = createClient();
+    const { data, error } = await supabase
+      .from("skills")
+      .select("id, name, icon_key, icon_url, sort_order")
+      .order("sort_order", { ascending: true });
+
+    if (error || !data || data.length === 0) {
+      return DATA.skills.map((s, i) => ({
+        id: String(i),
+        name: s.name,
+        iconKey: NAME_TO_KEY[s.name] ?? "",
+        iconUrl: "",
+        sortOrder: i,
+      }));
+    }
+    return data.map((s) => ({
+      id: s.id,
+      name: s.name,
+      iconKey: s.icon_key,
+      iconUrl: s.icon_url ?? "",
+      sortOrder: s.sort_order,
+    }));
+  } catch {
+    return DATA.skills.map((s, i) => ({
+      id: String(i),
+      name: s.name,
+      iconKey: NAME_TO_KEY[s.name] ?? "",
+      iconUrl: "",
+      sortOrder: i,
+    }));
+  }
+}
+
 export async function getHero(): Promise<HeroData> {
   try {
     const supabase = createClient();

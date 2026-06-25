@@ -10,16 +10,18 @@ import HackathonsSection from "@/components/section/hackathons-section";
 import ProjectsSection from "@/components/section/projects-section";
 import WorkSection from "@/components/section/work-section";
 import { ArrowUpRight } from "lucide-react";
-import { getAbout, getWorkExperience, getEducation, getHero } from "@/lib/portfolio-data";
+import { getAbout, getWorkExperience, getEducation, getHero, getSkills } from "@/lib/portfolio-data";
+import { SKILL_ICONS } from "@/lib/skill-icons";
 
 const BLUR_FADE_DELAY = 0.04;
 
 export default async function Page() {
-  const [hero, summary, work, education] = await Promise.all([
+  const [hero, summary, work, education, skills] = await Promise.all([
     getHero(),
     getAbout(),
     getWorkExperience(),
     getEducation(),
+    getSkills(),
   ]);
   return (
     <>
@@ -112,14 +114,21 @@ export default async function Page() {
                         <h2 className="text-xl font-bold">Skills</h2>
                     </BlurFade>
                     <div className="flex flex-wrap gap-2">
-                        {DATA.skills.map((skill, id) => (
-                            <BlurFade key={skill.name} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-                                <div className="flex items-center gap-2 px-3 py-2 rounded-xl border border-border/60 bg-card shadow-sm hover:shadow-md hover:border-border transition-all duration-200 cursor-default">
-                                    {skill.icon && <skill.icon className="size-5 flex-shrink-0" />}
-                                    <span className="text-sm font-medium text-card-foreground">{skill.name}</span>
-                                </div>
-                            </BlurFade>
-                        ))}
+                        {skills.map((skill, id) => {
+                            const Icon = !skill.iconUrl ? SKILL_ICONS[skill.iconKey] : null;
+                            return (
+                                <BlurFade key={skill.id} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
+                                    <div className="flex items-center gap-2 px-3 py-2 rounded-xl border border-border/60 bg-card shadow-sm hover:shadow-md hover:border-border transition-all duration-200 cursor-default">
+                                        {skill.iconUrl ? (
+                                            <img src={skill.iconUrl} alt={skill.name} className="size-5 flex-shrink-0 object-contain" />
+                                        ) : Icon ? (
+                                            <Icon className="size-5 flex-shrink-0" />
+                                        ) : null}
+                                        <span className="text-sm font-medium text-card-foreground">{skill.name}</span>
+                                    </div>
+                                </BlurFade>
+                            );
+                        })}
                     </div>
                 </div>
             </section>

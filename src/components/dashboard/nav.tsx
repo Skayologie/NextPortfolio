@@ -6,7 +6,7 @@ import { logout } from "@/app/actions/auth";
 import { cn } from "@/lib/utils";
 import {
   FileText, Briefcase, GraduationCap, FolderOpen,
-  Trophy, MessageSquare, ExternalLink, LogOut, User,
+  Trophy, MessageSquare, ExternalLink, LogOut, User, Cpu, KeyRound,
 } from "lucide-react";
 
 const navItems = [
@@ -14,9 +14,11 @@ const navItems = [
   { href: "/dashboard/about", icon: FileText, label: "About" },
   { href: "/dashboard/work", icon: Briefcase, label: "Work" },
   { href: "/dashboard/education", icon: GraduationCap, label: "Education" },
+  { href: "/dashboard/skills", icon: Cpu, label: "Skills" },
   { href: "/dashboard/projects", icon: FolderOpen, label: "Projects" },
   { href: "/dashboard/hackathons", icon: Trophy, label: "Hackathons" },
   { href: "/dashboard/messages", icon: MessageSquare, label: "Messages" },
+  { href: "/dashboard/password", icon: KeyRound, label: "Password" },
 ];
 
 export default function DashboardNav() {

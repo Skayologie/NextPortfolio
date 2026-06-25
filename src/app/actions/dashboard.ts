@@ -15,6 +15,32 @@ async function requireAuth() {
 
 const db = () => createAdminClient();
 
+// ── Skills ─────────────────────────────────────────────────────────
+export async function saveSkill(_: AR, fd: FormData): Promise<AR> {
+  await requireAuth();
+  const id = fd.get("id") as string;
+  const payload = {
+    name: (fd.get("name") as string)?.trim(),
+    icon_key: (fd.get("icon_key") as string)?.trim(),
+    icon_url: (fd.get("icon_url") as string)?.trim() ?? "",
+    sort_order: Number(fd.get("sort_order") || 0),
+  };
+  if (!payload.name) return { error: "Name is required." };
+  const { error } = id
+    ? await db().from("skills").update(payload).eq("id", id)
+    : await db().from("skills").insert(payload);
+  if (error) return { error: error.message };
+  revalidatePath("/");
+  return { success: true };
+}
+export async function deleteSkill(_: AR, fd: FormData): Promise<AR> {
+  await requireAuth();
+  const { error } = await db().from("skills").delete().eq("id", fd.get("id") as string);
+  if (error) return { error: error.message };
+  revalidatePath("/");
+  return { success: true };
+}
+
 // ── Hero ───────────────────────────────────────────────────────────
 export async function saveHero(_: AR, fd: FormData): Promise<AR> {
   await requireAuth();

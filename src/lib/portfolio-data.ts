@@ -1,4 +1,5 @@
 import { createClient } from "./supabase";
+import { createAdminClient } from "./supabase-admin";
 import { DATA } from "@/data/resume";
 
 export type WorkExperience = {
@@ -78,6 +79,52 @@ export async function getSkills(): Promise<SkillData[]> {
       iconUrl: "",
       sortOrder: i,
     }));
+  }
+}
+
+export type BannerData = {
+  message: string;
+  style: "info" | "success" | "warning" | "promo";
+  linkText: string;
+  linkUrl: string;
+  isActive: boolean;
+};
+
+export type ActiveTheme = { themeKey: string; fontFamily: string };
+
+export async function getActiveTheme(): Promise<ActiveTheme> {
+  try {
+    const { data } = await createAdminClient()
+      .from("settings")
+      .select("key, value")
+      .in("key", ["portfolio_theme", "portfolio_font_family"]);
+    const map = Object.fromEntries((data ?? []).map(r => [r.key, r.value]));
+    return {
+      themeKey: map["portfolio_theme"] ?? "zinc",
+      fontFamily: map["portfolio_font_family"] ?? "",
+    };
+  } catch {
+    return { themeKey: "zinc", fontFamily: "" };
+  }
+}
+
+export async function getBanner(): Promise<BannerData> {
+  try {
+    const { data } = await createClient()
+      .from("banner")
+      .select("message, style, link_text, link_url, is_active")
+      .eq("id", 1)
+      .single();
+    if (!data) return { message: "", style: "info", linkText: "", linkUrl: "", isActive: false };
+    return {
+      message: data.message,
+      style: (data.style as BannerData["style"]) ?? "info",
+      linkText: data.link_text,
+      linkUrl: data.link_url,
+      isActive: data.is_active,
+    };
+  } catch {
+    return { message: "", style: "info", linkText: "", linkUrl: "", isActive: false };
   }
 }
 

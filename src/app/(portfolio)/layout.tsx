@@ -1,10 +1,14 @@
 import Navbar from "@/components/navbar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+import AnnouncementBanner from "@/components/announcement-banner";
+import { getBanner } from "@/lib/portfolio-data";
 
-export default function PortfolioLayout({ children }: { children: React.ReactNode }) {
+export default async function PortfolioLayout({ children }: { children: React.ReactNode }) {
+  const banner = await getBanner();
   return (
     <TooltipProvider delayDuration={0}>
+      <AnnouncementBanner banner={banner} />
       <div className="absolute inset-0 top-0 left-0 right-0 h-[100px] overflow-hidden z-0">
         <FlickeringGrid
           className="h-full w-full"

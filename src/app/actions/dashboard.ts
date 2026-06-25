@@ -15,6 +15,38 @@ async function requireAuth() {
 
 const db = () => createAdminClient();
 
+// ── Theme ──────────────────────────────────────────────────────────
+export async function saveTheme(_: AR, fd: FormData): Promise<AR> {
+  await requireAuth();
+  const theme = (fd.get("theme") as string) || "zinc";
+  const fontFamily = (fd.get("font_family") as string)?.trim() ?? "";
+  const { error } = await db().from("settings").upsert([
+    { key: "portfolio_theme", value: theme },
+    { key: "portfolio_font_family", value: fontFamily },
+  ]);
+  if (error) return { error: error.message };
+  revalidatePath("/");
+  revalidatePath("/blog");
+  return { success: true };
+}
+
+// ── Banner ─────────────────────────────────────────────────────────
+export async function saveBanner(_: AR, fd: FormData): Promise<AR> {
+  await requireAuth();
+  const payload = {
+    message: (fd.get("message") as string)?.trim() ?? "",
+    style: (fd.get("style") as string) || "info",
+    link_text: (fd.get("link_text") as string)?.trim() ?? "",
+    link_url: (fd.get("link_url") as string)?.trim() ?? "",
+    is_active: fd.get("is_active") === "true",
+  };
+  const { error } = await db().from("banner").upsert({ id: 1, ...payload });
+  if (error) return { error: error.message };
+  revalidatePath("/");
+  revalidatePath("/blog");
+  return { success: true };
+}
+
 // ── Skills ─────────────────────────────────────────────────────────
 export async function saveSkill(_: AR, fd: FormData): Promise<AR> {
   await requireAuth();

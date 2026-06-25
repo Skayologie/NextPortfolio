@@ -2,20 +2,29 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { StructuredData } from "@/components/structured-data";
+import { getActiveTheme } from "@/lib/portfolio-data";
+import { buildThemeCSS, googleFontURL } from "@/lib/themes";
+import type { ThemeKey } from "@/lib/themes";
 
 const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-geist-sans",
   weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-mono",
+  variable: "--font-geist-mono",
+});
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-jakarta",
 });
 
 export const viewport: Viewport = {
@@ -163,21 +172,34 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { themeKey, fontFamily } = await getActiveTheme();
+  const themeCSS = buildThemeCSS(themeKey as ThemeKey, fontFamily);
+  const gFontURL = googleFontURL(fontFamily);
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <StructuredData />
+        {gFontURL && (
+          <>
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+            <link rel="stylesheet" href={gFontURL} />
+          </>
+        )}
+        <style dangerouslySetInnerHTML={{ __html: themeCSS }} />
       </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased relative",
           geist.variable,
-          geistMono.variable
+          geistMono.variable,
+          jakarta.variable,
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="light">

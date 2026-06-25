@@ -1,6 +1,8 @@
 import { createClient } from "./supabase";
 import { createAdminClient } from "./supabase-admin";
 import { DATA } from "@/data/resume";
+import type { TemplateCustomization } from "@/templates/types";
+import { TEMPLATE_DEFAULTS } from "@/templates/types";
 
 export type WorkExperience = {
   company: string;
@@ -89,6 +91,34 @@ export type BannerData = {
   linkUrl: string;
   isActive: boolean;
 };
+
+export async function getActiveTemplate(): Promise<string> {
+  try {
+    const { data } = await createAdminClient()
+      .from("settings")
+      .select("value")
+      .eq("key", "portfolio_template")
+      .single();
+    return data?.value ?? "minimal";
+  } catch {
+    return "minimal";
+  }
+}
+
+export async function getTemplateCustomization(templateKey: string): Promise<TemplateCustomization> {
+  const defaults = TEMPLATE_DEFAULTS[templateKey] ?? TEMPLATE_DEFAULTS["minimal"];
+  try {
+    const { data } = await createAdminClient()
+      .from("settings")
+      .select("value")
+      .eq("key", `template_customization_${templateKey}`)
+      .single();
+    if (!data?.value) return defaults;
+    return { ...defaults, ...JSON.parse(data.value) };
+  } catch {
+    return defaults;
+  }
+}
 
 export type ActiveTheme = { themeKey: string; fontFamily: string };
 

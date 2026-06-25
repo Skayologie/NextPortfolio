@@ -15,6 +15,30 @@ async function requireAuth() {
 
 const db = () => createAdminClient();
 
+// ── Template ───────────────────────────────────────────────────────
+export async function saveTemplate(_: AR, fd: FormData): Promise<AR> {
+  await requireAuth();
+  const key = (fd.get("template") as string) || "minimal";
+  const { error } = await db().from("settings").upsert({ key: "portfolio_template", value: key });
+  if (error) return { error: error.message };
+  revalidatePath("/");
+  return { success: true };
+}
+
+export async function saveTemplateCustomization(_: AR, fd: FormData): Promise<AR> {
+  await requireAuth();
+  const templateKey = (fd.get("template_key") as string) || "minimal";
+  const value = JSON.stringify({
+    accentColor: (fd.get("accent_color") as string)?.trim() || "",
+    bgColor:     (fd.get("bg_color")     as string)?.trim() || "",
+    fontFamily:  (fd.get("font_family")  as string)?.trim() || "",
+  });
+  const { error } = await db().from("settings").upsert({ key: `template_customization_${templateKey}`, value });
+  if (error) return { error: error.message };
+  revalidatePath("/");
+  return { success: true };
+}
+
 // ── Theme ──────────────────────────────────────────────────────────
 export async function saveTheme(_: AR, fd: FormData): Promise<AR> {
   await requireAuth();

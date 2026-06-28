@@ -13,7 +13,7 @@ import type { PortfolioData } from "@/templates/types";
 const Divider = ({ label }: { label: string }) => (
   <div className="flex items-center gap-4 my-12">
     <div className="flex-1 h-px bg-border" />
-    <h2 className="text-xs font-black uppercase tracking-[0.3em]" style={{ color: "var(--tc-accent)" }}>{label}</h2>
+    <h2 className="text-base font-black uppercase tracking-[0.3em]" style={{ color: "var(--tc-accent)" }}>{label}</h2>
     <div className="flex-1 h-px bg-border" />
   </div>
 );

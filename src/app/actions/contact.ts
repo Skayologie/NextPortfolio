@@ -2,6 +2,7 @@
 
 import { headers } from "next/headers";
 import { createAdminClient } from "@/lib/supabase-admin";
+import { sendTelegramNotification } from "@/lib/telegram";
 
 export type ContactState = {
   success: boolean;
@@ -69,6 +70,9 @@ export async function submitContact(
     if (error) {
       return { success: false, message: "Failed to send message. Please try again." };
     }
+
+    // Fire-and-forget Telegram notification (never blocks the response)
+    sendTelegramNotification({ fullName, email, ip, message }).catch(() => {});
 
     return {
       success: true,

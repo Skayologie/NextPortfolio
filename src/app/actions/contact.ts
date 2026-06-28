@@ -71,8 +71,8 @@ export async function submitContact(
       return { success: false, message: "Failed to send message. Please try again." };
     }
 
-    // Fire-and-forget Telegram notification (never blocks the response)
-    sendTelegramNotification({ fullName, email, ip, message }).catch(() => {});
+    // Await so Vercel doesn't kill the function before the fetch completes
+    await sendTelegramNotification({ fullName, email, ip, message });
 
     return {
       success: true,

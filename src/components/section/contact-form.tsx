@@ -78,8 +78,8 @@ export function ContactForm() {
       onSubmit={handleSubmit}
       className="flex flex-col gap-4 w-full"
     >
-      {/* Rate-limit banner (localStorage or server) */}
-      {isBlocked && (
+      {/* Blocked from a PREVIOUS session — only show when there is no fresh action result */}
+      {isBlocked && !state && (
         <div className="flex items-start gap-2.5 text-sm rounded-lg px-4 py-3 bg-red-500/10 text-red-600 dark:text-red-400">
           <span>
             You already sent a message. You can send another in{" "}
@@ -88,8 +88,8 @@ export function ContactForm() {
         </div>
       )}
 
-      {/* Success / error banners (only when not already showing blocked) */}
-      {!isBlocked && state && !showConfirm && (
+      {/* Current action result — success or error from this session */}
+      {state && !showConfirm && (
         <div
           className={cn(
             "flex items-start gap-2.5 text-sm rounded-lg px-4 py-3",

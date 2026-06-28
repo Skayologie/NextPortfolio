@@ -1,14 +1,22 @@
 import { DATA } from '@/data/resume'
 
+const PERSON_ID = `${DATA.url}#person`;
+
 export function StructuredData() {
-  const structuredData = {
+  const person = {
     '@context': 'https://schema.org',
     '@type': 'Person',
+    '@id': PERSON_ID,
     name: 'Jawad Boulmal',
     alternateName: 'JB',
     description: DATA.description,
     url: DATA.url,
-    image: `${DATA.url}/profile1.jpg`,
+    image: {
+      '@type': 'ImageObject',
+      url: `${DATA.url}${DATA.avatarUrl}`,
+      width: 400,
+      height: 400,
+    },
     sameAs: [
       DATA.contact.social.GitHub.url,
       DATA.contact.social.LinkedIn.url,
@@ -16,10 +24,9 @@ export function StructuredData() {
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Casablanca',
-      addressCountry: 'Morocco',
+      addressCountry: 'MA',
     },
     email: DATA.contact.email,
-    telephone: DATA.contact.tel,
     jobTitle: 'Full Stack Developer',
     worksFor: {
       '@type': 'Organization',
@@ -27,111 +34,95 @@ export function StructuredData() {
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Safi',
-        addressCountry: 'Morocco',
+        addressCountry: 'MA',
       },
     },
     alumniOf: [
       {
         '@type': 'EducationalOrganization',
         name: 'YOUCODE - UM6P',
-        description: 'Développeur Web Full Stack (Java/Angular/Spring)',
-      },
-      {
-        '@type': 'EducationalOrganization',
-        name: 'Lycée Albouhtouri Casablanca',
-        description: 'Baccalauréat Sciences Expérimentales Option SVT',
       },
     ],
     knowsAbout: [
-      'Java',
-      'Spring Boot',
-      'Angular',
-      'React',
-      'Next.js',
-      'TypeScript',
-      'JavaScript',
-      'Node.js',
-      'PostgreSQL',
-      'MySQL',
-      'Docker',
-      'AWS',
-      'Laravel',
-      'PHP',
-      'Flutter',
-      'Nest.js',
-    ],
-    hasCredential: [
-      {
-        '@type': 'EducationalOccupationalCredential',
-        name: 'Full Stack Developer',
-        educationalLevel: 'Professional Training',
-        credentialCategory: 'degree',
-      },
+      'Java', 'Spring Boot', 'Angular', 'React', 'Next.js',
+      'TypeScript', 'JavaScript', 'Node.js', 'PostgreSQL',
+      'MySQL', 'Docker', 'AWS', 'Laravel', 'PHP', 'Flutter', 'Nest.js',
     ],
   }
 
-  const websiteStructuredData = {
+  const website = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: DATA.name,
+    '@id': `${DATA.url}#website`,
+    name: 'Jawad Boulmal — Portfolio',
     description: DATA.description,
     url: DATA.url,
-    author: {
-      '@type': 'Person',
-      name: 'Jawad Boulmal',
-    },
+    author: { '@id': PERSON_ID },
     inLanguage: 'en-US',
     copyrightYear: new Date().getFullYear(),
-    genre: 'Portfolio',
-    keywords: 'Full Stack Developer, Java, Angular, React, Next.js, Morocco',
   }
 
-  const portfolioStructuredData = {
+  const profilePage = {
     '@context': 'https://schema.org',
-    '@type': 'CreativeWork',
-    '@id': `${DATA.url}#portfolio`,
-    name: 'Jawad Boulmal Portfolio',
-    description: 'Professional portfolio showcasing full stack development projects',
+    '@type': 'ProfilePage',
+    '@id': `${DATA.url}#profilepage`,
     url: DATA.url,
-    author: {
-      '@type': 'Person',
-      name: 'Jawad Boulmal',
-    },
-    dateCreated: '2024-01-01',
-    dateModified: new Date().toISOString(),
+    name: 'Jawad Boulmal — Full Stack Developer Portfolio',
+    description: DATA.description,
     inLanguage: 'en-US',
-    genre: 'Portfolio',
-    workExample: DATA.projects.map((project) => ({
-      '@type': 'SoftwareApplication',
-      name: project.title,
-      description: project.description,
-      url: project.href,
-      applicationCategory: 'WebApplication',
-      operatingSystem: 'Web',
-      programmingLanguage: project.technologies,
+    dateCreated: '2024-01-01T00:00:00Z',
+    dateModified: new Date().toISOString(),
+    mainEntity: { '@id': PERSON_ID },
+    author: { '@id': PERSON_ID },
+    breadcrumb: {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: DATA.url,
+        },
+      ],
+    },
+  }
+
+  const creativeWork = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': `${DATA.url}#projects`,
+    name: 'Projects by Jawad Boulmal',
+    description: 'Open-source and professional projects built by Jawad Boulmal',
+    url: DATA.url,
+    author: { '@id': PERSON_ID },
+    numberOfItems: DATA.projects.length,
+    itemListElement: DATA.projects.map((project, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'SoftwareApplication',
+        name: project.title,
+        description: project.description,
+        url: project.href,
+        applicationCategory: 'WebApplication',
+        operatingSystem: 'Web',
+        programmingLanguage: project.technologies,
+        author: { '@id': PERSON_ID },
+      },
     })),
   }
 
+  const schemas = [person, website, profilePage, creativeWork];
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(websiteStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(portfolioStructuredData),
-        }}
-      />
+      {schemas.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
     </>
   )
 }

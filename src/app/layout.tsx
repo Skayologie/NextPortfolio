@@ -98,18 +98,11 @@ export const metadata: Metadata = {
     siteName: DATA.name,
     images: [
       {
-        url: `${DATA.url}/web-app-manifest-512x512.png`,
+        url: `${DATA.url}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: "Jawad Boulmal - Full Stack Developer",
-        type: "image/jpeg",
-      },
-      {
-        url: `${DATA.url}/web-app-manifest-512x512.png`,
-        width: 800,
-        height: 600,
-        alt: "Jawad Boulmal - Full Stack Developer",
-        type: "image/jpeg",
+        type: "image/png",
       },
     ],
   },
@@ -117,8 +110,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: DATA.name,
     description: DATA.description,
-    images: [`${DATA.url}/web-app-manifest-512x512.png`],
-    creator: "@jawadboulmal", // Add your Twitter handle if you have one
+    images: [`${DATA.url}/opengraph-image`],
+    creator: "@jawadboulmal",
   },
   robots: {
     index: true,
@@ -142,32 +135,15 @@ export const metadata: Metadata = {
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
-    other: [
-      {
-        rel: "mask-icon",
-        url: "/safari-pinned-tab.svg",
-        color: "#000000",
-      },
-    ],
   },
   manifest: "/site.webmanifest",
-  verification: {
-    google: "", // Add your Google Search Console verification code
-    yandex: "", // Add your Yandex verification code
-    yahoo: "", // Add your Yahoo verification code
-    other: {
-      "msvalidate.01": "", // Add your Bing verification code
-    },
-  },
   category: "technology",
   classification: "Portfolio Website",
   referrer: "origin-when-cross-origin",
   alternates: {
     canonical: DATA.url,
-    languages: {
-      "en-US": DATA.url,
-      "fr-FR": `${DATA.url}/fr`, // Add if you plan to support French
-      "ar-MA": `${DATA.url}/ar`, // Add if you plan to support Arabic
+    types: {
+      "application/rss+xml": `${DATA.url}/blog/rss.xml`,
     },
   },
 };

@@ -1,3 +1,14 @@
+async function getCityFromIP(ip: string): Promise<string> {
+  try {
+    const res  = await fetch(`http://ip-api.com/json/${ip}?fields=city,country`, { cache: "no-store" });
+    const data = await res.json();
+    if (data.city && data.country) return `${data.city}, ${data.country}`;
+    if (data.city)    return data.city;
+    if (data.country) return data.country;
+  } catch { /* silently ignore */ }
+  return "Unknown";
+}
+
 /**
  * Sends a Telegram notification when someone submits the contact form.
  * Requires TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in .env.local
@@ -16,17 +27,21 @@ export async function sendTelegramNotification(data: {
     return;
   }
 
-  const now = new Date().toLocaleString("en-GB", {
-    timeZone: "Africa/Casablanca",
-    dateStyle: "short",
-    timeStyle: "short",
-  });
+  const [city, now] = await Promise.all([
+    getCityFromIP(data.ip),
+    Promise.resolve(new Date().toLocaleString("en-GB", {
+      timeZone: "Africa/Casablanca",
+      dateStyle: "short",
+      timeStyle: "short",
+    })),
+  ]);
 
   const text =
     `🔔 <b>New Contact Message</b>\n\n` +
     `👤 <b>Name:</b> ${esc(data.fullName)}\n` +
     `📧 <b>Email:</b> ${esc(data.email)}\n` +
     `🌍 <b>IP:</b> <code>${esc(data.ip)}</code>\n` +
+    `📍 <b>City:</b> ${esc(city)}\n` +
     `📅 <b>Time:</b> ${now}\n\n` +
     `💬 <b>Message:</b>\n${esc(data.message)}`;
 

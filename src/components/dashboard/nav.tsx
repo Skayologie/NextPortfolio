@@ -6,7 +6,7 @@ import { logout } from "@/app/actions/auth";
 import { cn } from "@/lib/utils";
 import {
   FileText, Briefcase, GraduationCap, FolderOpen,
-  Trophy, MessageSquare, ExternalLink, LogOut, User, Cpu, KeyRound, Megaphone, Palette, BarChart2, LayoutTemplate,
+  Trophy, MessageSquare, ExternalLink, LogOut, User, Cpu, KeyRound, Megaphone, Palette, BarChart2, LayoutTemplate, Search,
 } from "lucide-react";
 
 const navItems = [
@@ -15,6 +15,7 @@ const navItems = [
   { href: "/dashboard/banner",     icon: Megaphone,     label: "Banner" },
   { href: "/dashboard/theme",      icon: Palette,       label: "Style" },
   { href: "/dashboard/templates",  icon: LayoutTemplate, label: "Templates" },
+  { href: "/dashboard/seo",        icon: Search,        label: "SEO" },
   { href: "/dashboard/about",      icon: FileText,      label: "About" },
   { href: "/dashboard/work",       icon: Briefcase,     label: "Work" },
   { href: "/dashboard/education",  icon: GraduationCap, label: "Education" },

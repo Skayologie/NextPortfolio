@@ -54,6 +54,23 @@ export async function saveTheme(_: AR, fd: FormData): Promise<AR> {
   return { success: true };
 }
 
+// ── SEO ────────────────────────────────────────────────────────────
+export async function saveSeoSettings(_: AR, fd: FormData): Promise<AR> {
+  await requireAuth();
+  const rows = [
+    { key: "seo_title",               value: (fd.get("seo_title")               as string)?.trim() || "" },
+    { key: "seo_description",         value: (fd.get("seo_description")         as string)?.trim() || "" },
+    { key: "seo_keywords",            value: (fd.get("seo_keywords")            as string)?.trim() || "" },
+    { key: "seo_google_verification", value: (fd.get("seo_google_verification") as string)?.trim() || "" },
+    { key: "seo_og_image",            value: (fd.get("seo_og_image")            as string)?.trim() || "" },
+  ];
+  const { error } = await db().from("settings").upsert(rows);
+  if (error) return { error: error.message };
+  revalidatePath("/");
+  revalidatePath("/blog");
+  return { success: true };
+}
+
 // ── Banner ─────────────────────────────────────────────────────────
 export async function saveBanner(_: AR, fd: FormData): Promise<AR> {
   await requireAuth();

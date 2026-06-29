@@ -202,6 +202,43 @@ export async function getAbout(): Promise<string> {
   }
 }
 
+export type SeoSettings = {
+  title: string;
+  description: string;
+  keywords: string;
+  googleVerification: string;
+  ogImage: string;
+};
+
+const SEO_DEFAULTS: SeoSettings = {
+  title: DATA.name,
+  description:
+    "Jawad Boulmal — Full Stack Developer in Casablanca, Morocco. Expert in Java, Spring Boot, Angular, React & Next.js. Building scalable web apps and robust backend architectures.",
+  keywords:
+    "Jawad Boulmal, Jawad Boulmal Developer, Full Stack Developer, Web Developer Morocco, Développeur Web Maroc, Java, Spring Boot, Angular, React, Next.js, TypeScript, Docker, DabaDoc",
+  googleVerification: "",
+  ogImage: "/og-image.png",
+};
+
+export async function getSeoSettings(): Promise<SeoSettings> {
+  try {
+    const { data } = await createAdminClient()
+      .from("settings")
+      .select("key, value")
+      .in("key", ["seo_title", "seo_description", "seo_keywords", "seo_google_verification", "seo_og_image"]);
+    const map = Object.fromEntries((data ?? []).map((r) => [r.key, r.value]));
+    return {
+      title:                map["seo_title"]                 || SEO_DEFAULTS.title,
+      description:          map["seo_description"]           || SEO_DEFAULTS.description,
+      keywords:             map["seo_keywords"]              || SEO_DEFAULTS.keywords,
+      googleVerification:   map["seo_google_verification"]   || SEO_DEFAULTS.googleVerification,
+      ogImage:              map["seo_og_image"]              || SEO_DEFAULTS.ogImage,
+    };
+  } catch {
+    return SEO_DEFAULTS;
+  }
+}
+
 export async function getWorkExperience(): Promise<WorkExperience[]> {
   try {
     const supabase = createClient();

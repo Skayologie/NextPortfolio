@@ -5,7 +5,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { StructuredData } from "@/components/structured-data";
-import { getActiveTheme } from "@/lib/portfolio-data";
+import { getActiveTheme, getSeoSettings } from "@/lib/portfolio-data";
 import { buildThemeCSS, googleFontURL } from "@/lib/themes";
 import type { ThemeKey } from "@/lib/themes";
 
@@ -39,142 +39,76 @@ export const viewport: Viewport = {
   ],
 };
 
-export const metadata: Metadata = {
-  metadataBase: new URL(DATA.url),
-  title: {
-    default: DATA.name,
-    template: `%s | ${DATA.name}`,
-  },
-  description:
-    "Full Stack Developer in Casablanca, Morocco. Expert in Java, Spring Boot, Angular, React & Next.js. Building scalable web apps and robust backend architectures. Open to new opportunities.",
-  keywords: [
-    // Identity
-    "Jawad Boulmal",
-    "Jawad Boulmal Developer",
-    "Jawad Boulmal Portfolio",
-    // Roles
-    "Full Stack Developer",
-    "Full Stack Engineer",
-    "Software Engineer",
-    "Web Developer",
-    "Backend Developer",
-    "Frontend Developer",
-    // Location
-    "Web Developer Morocco",
-    "Full Stack Developer Morocco",
-    "Developer Casablanca",
-    "Développeur Web Maroc",
-    "Développeur Full Stack",
-    "Développeur Web Casablanca",
-    // Current stack
-    "Java Developer",
-    "Spring Boot Developer",
-    "Angular Developer",
-    "React Developer",
-    "Next.js Developer",
-    "Ruby on Rails Developer",
-    "Ruby Developer",
-    // Technologies
-    "Spring Boot",
-    "Angular",
-    "Next.js",
-    "React.js",
-    "TypeScript",
-    "JavaScript",
-    "Node.js",
-    "NestJS",
-    "Ruby on Rails",
-    "Laravel",
-    "PHP",
-    "Flutter",
-    // Infrastructure
-    "REST API",
-    "Docker",
-    "AWS",
-    "PostgreSQL",
-    "MySQL",
-    "MongoDB",
-    // Companies & schools
-    "DabaDoc",
-    "MediaVerse",
-    "YouCode UM6P",
-    // General
-    "Portfolio",
-    "Web Development",
-    "API Development",
-    "Microservices",
-  ],
-  authors: [
-    {
-      name: "Jawad Boulmal",
-      url: DATA.url,
+export async function generateMetadata(): Promise<Metadata> {
+  const seo = await getSeoSettings();
+  const ogImageUrl = seo.ogImage.startsWith("http")
+    ? seo.ogImage
+    : `${DATA.url}${seo.ogImage}`;
+  const keywords = seo.keywords
+    .split(",")
+    .map((k) => k.trim())
+    .filter(Boolean);
+
+  return {
+    metadataBase: new URL(DATA.url),
+    title: {
+      default: seo.title,
+      template: `%s | ${seo.title}`,
     },
-  ],
-  creator: "Jawad Boulmal",
-  publisher: "Jawad Boulmal",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: DATA.url,
-    title: DATA.name,
-    description: DATA.description,
-    siteName: DATA.name,
-    images: [
-      {
-        url: `${DATA.url}/og-image.png`,
-        width: 1200,
-        height: 630,
-        alt: "Jawad Boulmal - Full Stack Developer",
-        type: "image/png",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: DATA.name,
-    description: DATA.description,
-    images: [`${DATA.url}/og-image.png`],
-    creator: "@jawadboulmal",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    nocache: false,
-    googleBot: {
+    description: seo.description,
+    keywords,
+    authors: [{ name: "Jawad Boulmal", url: DATA.url }],
+    creator: "Jawad Boulmal",
+    publisher: "Jawad Boulmal",
+    formatDetection: { email: false, address: false, telephone: false },
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      url: DATA.url,
+      title: seo.title,
+      description: seo.description,
+      siteName: seo.title,
+      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: seo.title, type: "image/png" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seo.title,
+      description: seo.description,
+      images: [ogImageUrl],
+      creator: "@jawadboulmal",
+    },
+    verification: seo.googleVerification ? { google: seo.googleVerification } : undefined,
+    robots: {
       index: true,
       follow: true,
-      noimageindex: false,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      nocache: false,
+      googleBot: {
+        index: true,
+        follow: true,
+        noimageindex: false,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/icon-32x32.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-    ],
-  },
-  manifest: "/site.webmanifest",
-  category: "technology",
-  classification: "Portfolio Website",
-  referrer: "origin-when-cross-origin",
-  alternates: {
-    canonical: DATA.url,
-    types: {
-      "application/rss+xml": `${DATA.url}/blog/rss.xml`,
+    icons: {
+      icon: [
+        { url: "/favicon.ico", sizes: "any" },
+        { url: "/icon-16x16.png", sizes: "16x16", type: "image/png" },
+        { url: "/icon-32x32.png", sizes: "32x32", type: "image/png" },
+      ],
+      apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
     },
-  },
-};
+    manifest: "/site.webmanifest",
+    category: "technology",
+    classification: "Portfolio Website",
+    referrer: "origin-when-cross-origin",
+    alternates: {
+      canonical: DATA.url,
+      types: { "application/rss+xml": `${DATA.url}/blog/rss.xml` },
+    },
+  };
+}
 
 export default async function RootLayout({
   children,

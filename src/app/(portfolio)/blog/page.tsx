@@ -4,52 +4,41 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { paginate, normalizePage } from "@/lib/pagination";
 import { ChevronRight } from "lucide-react";
-
 import { DATA } from "@/data/resume";
+import { getSeoSettings } from "@/lib/portfolio-data";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description: "Thoughts on software development, full stack programming, Java, Angular, React, and more technical insights from Jawad Boulmal.",
-  keywords: [
-    "Jawad Boulmal Blog",
-    "Full Stack Developer Blog",
-    "Java Programming",
-    "Angular Development",
-    "React Tutorials",
-    "Spring Boot",
-    "TypeScript",
-    "Web Development",
-    "Software Engineering",
-    "Programming Tips",
-    "Tech Articles",
-    "Developer Insights",
-    "Morocco Developer",
-    "Backend Development",
-    "Frontend Development"
-  ],
-  authors: [{ name: "Jawad Boulmal", url: DATA.url }],
-  creator: "Jawad Boulmal",
-  publisher: "Jawad Boulmal",
-  openGraph: {
-    title: "Blog | Jawad Boulmal",
-    description: "Thoughts on software development, full stack programming, Java, Angular, React, and more technical insights from Jawad Boulmal.",
-    url: `${DATA.url}/blog`,
-    siteName: DATA.name,
-    locale: "en_US",
-    type: "website",
-    images: [{ url: `${DATA.url}/og-image.png`, width: 1200, height: 630, alt: "Jawad Boulmal Blog - Full Stack Developer", type: "image/png" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Blog | Jawad Boulmal",
-    description: "Thoughts on software development, full stack programming, Java, Angular, React, and more technical insights.",
-    creator: "@jawadboulmal",
-    images: [`${DATA.url}/og-image.png`],
-  },
-  alternates: { canonical: `${DATA.url}/blog` },
-  robots: { index: true, follow: true, nocache: false, googleBot: { index: true, follow: true, noimageindex: false, "max-video-preview": -1, "max-image-preview": "large", "max-snippet": -1 } },
-  category: "technology",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const seo = await getSeoSettings();
+  const ogImageUrl = seo.ogImage.startsWith("http") ? seo.ogImage : `${DATA.url}${seo.ogImage}`;
+  const blogDescription = "Thoughts on software development, full stack programming, Java, Angular, React, and more technical insights from Jawad Boulmal.";
+  return {
+    title: "Blog",
+    description: blogDescription,
+    keywords: ["Jawad Boulmal Blog", "Full Stack Developer Blog", "Java Programming", "Angular Development", "React Tutorials", "Spring Boot", "TypeScript", "Web Development", "Software Engineering", "Morocco Developer"],
+    authors: [{ name: "Jawad Boulmal", url: DATA.url }],
+    creator: "Jawad Boulmal",
+    publisher: "Jawad Boulmal",
+    openGraph: {
+      title: `Blog | ${seo.title}`,
+      description: blogDescription,
+      url: `${DATA.url}/blog`,
+      siteName: seo.title,
+      locale: "en_US",
+      type: "website",
+      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: `${seo.title} — Blog`, type: "image/png" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Blog | ${seo.title}`,
+      description: blogDescription,
+      creator: "@jawadboulmal",
+      images: [ogImageUrl],
+    },
+    alternates: { canonical: `${DATA.url}/blog` },
+    robots: { index: true, follow: true, nocache: false, googleBot: { index: true, follow: true, noimageindex: false, "max-video-preview": -1, "max-image-preview": "large", "max-snippet": -1 } },
+    category: "technology",
+  };
+}
 
 const PAGE_SIZE = 5;
 const BLUR_FADE_DELAY = 0.04;

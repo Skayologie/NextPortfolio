@@ -1,15 +1,18 @@
 import { DATA } from '@/data/resume'
+import { getSeoSettings } from '@/lib/portfolio-data'
 
 const PERSON_ID = `${DATA.url}#person`;
 
-export function StructuredData() {
+export async function StructuredData() {
+  const seo = await getSeoSettings();
+
   const person = {
     '@context': 'https://schema.org',
     '@type': 'Person',
     '@id': PERSON_ID,
     name: 'Jawad Boulmal',
     alternateName: 'JB',
-    description: DATA.description,
+    description: seo.description,
     url: DATA.url,
     image: {
       '@type': 'ImageObject',
@@ -54,8 +57,8 @@ export function StructuredData() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     '@id': `${DATA.url}#website`,
-    name: 'Jawad Boulmal — Portfolio',
-    description: DATA.description,
+    name: seo.title,
+    description: seo.description,
     url: DATA.url,
     author: { '@id': PERSON_ID },
     inLanguage: 'en-US',
@@ -67,8 +70,8 @@ export function StructuredData() {
     '@type': 'ProfilePage',
     '@id': `${DATA.url}#profilepage`,
     url: DATA.url,
-    name: 'Jawad Boulmal — Full Stack Developer Portfolio',
-    description: DATA.description,
+    name: seo.title,
+    description: seo.description,
     inLanguage: 'en-US',
     dateCreated: '2024-01-01T00:00:00Z',
     dateModified: new Date().toISOString(),

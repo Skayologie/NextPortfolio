@@ -30,7 +30,7 @@ export default function MinimalTemplate({ data }: { data: PortfolioData }) {
       <section>
         <div className="flex flex-col md:flex-row justify-between gap-6">
           <div className="flex flex-col gap-2 order-2 md:order-1">
-            <BlurFadeText delay={D} className="text-3xl font-semibold tracking-tighter sm:text-5xl" yOffset={8} text={`Hi, I'm ${hero.displayName}`} />
+            <BlurFadeText as="h1" delay={D} className="text-3xl font-semibold tracking-tighter sm:text-5xl" yOffset={8} text={`Hi, I'm ${hero.displayName}`} />
             <BlurFadeText delay={D} className="text-muted-foreground max-w-[600px] md:text-lg" text={hero.description} />
           </div>
           <BlurFade delay={D} className="order-1 md:order-2">
@@ -61,7 +61,7 @@ export default function MinimalTemplate({ data }: { data: PortfolioData }) {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <p className="font-semibold">{w.company}</p>
+                      <h3 className="font-semibold">{w.company}</h3>
                       <p className="text-sm text-muted-foreground">{w.title}</p>
                     </div>
                     <p className="text-xs text-muted-foreground shrink-0 tabular-nums">{w.start} – {w.end ?? "Present"}</p>
@@ -81,10 +81,10 @@ export default function MinimalTemplate({ data }: { data: PortfolioData }) {
           <h2 className="text-xl font-bold">Education</h2>
           <div className="flex flex-col gap-4">
             {education.map(e => (
-              <Link key={e.school} href={e.href} target="_blank" className="flex items-center gap-4 group">
+              <Link key={e.school} href={e.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
                 {e.logoUrl ? <img src={e.logoUrl} alt={e.school} className="size-10 rounded-full border object-contain p-1 ring-2 ring-border shrink-0" /> : <div className="size-10 rounded-full border ring-2 ring-border bg-muted shrink-0" />}
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold group-hover:underline">{e.school}</p>
+                  <h3 className="font-semibold group-hover:underline">{e.school}</h3>
                   <p className="text-sm text-muted-foreground">{e.degree}</p>
                 </div>
                 <p className="text-xs text-muted-foreground tabular-nums shrink-0">{e.start} – {e.end}</p>
@@ -118,11 +118,11 @@ export default function MinimalTemplate({ data }: { data: PortfolioData }) {
               <div key={p.title} className="border border-border rounded-xl overflow-hidden bg-card flex flex-col">
                 {p.image && <img src={p.image} alt={p.title} className="w-full h-36 object-cover" />}
                 <div className="p-4 flex flex-col gap-2 flex-1">
-                  <p className="font-semibold">{p.title}</p>
+                  <h3 className="font-semibold">{p.title}</h3>
                   <p className="text-xs text-muted-foreground">{p.dates}</p>
                   <p className="text-sm text-muted-foreground flex-1">{p.description}</p>
                   <div className="flex flex-wrap gap-1">{p.technologies.slice(0, 4).map(t => <Badge key={t} variant="secondary" className="text-xs">{t}</Badge>)}</div>
-                  <div className="flex gap-2">{p.links.map((l, i) => <Link key={i} href={l.href} target="_blank" className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1">{l.icon_type === "github" ? <Icons.github className="size-3" /> : <Icons.globe className="size-3" />}{l.type}</Link>)}</div>
+                  <div className="flex gap-2">{p.links.map((l, i) => <Link key={i} href={l.href} target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1">{l.icon_type === "github" ? <Icons.github className="size-3" /> : <Icons.globe className="size-3" />}{l.type}</Link>)}</div>
                 </div>
               </div>
             ))}
@@ -139,7 +139,7 @@ export default function MinimalTemplate({ data }: { data: PortfolioData }) {
               <div key={h.title} className="flex gap-4 items-start">
                 {h.image ? <img src={h.image} alt={h.title} className="size-10 rounded-full border object-contain p-1 ring-2 ring-border shrink-0 mt-1" /> : <div className="size-10 rounded-full border ring-2 ring-border bg-muted shrink-0 mt-1" />}
                 <div className="flex-1">
-                  <p className="font-semibold">{h.title}</p>
+                  <h3 className="font-semibold">{h.title}</h3>
                   <p className="text-xs text-muted-foreground">{h.dates} · {h.location}</p>
                   <p className="text-sm text-muted-foreground mt-1">{h.description}</p>
                 </div>

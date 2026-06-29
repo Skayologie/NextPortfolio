@@ -45,36 +45,64 @@ export const metadata: Metadata = {
     default: DATA.name,
     template: `%s | ${DATA.name}`,
   },
-  description: DATA.description,
+  description:
+    "Full Stack Developer in Casablanca, Morocco. Expert in Java, Spring Boot, Angular, React & Next.js. Building scalable web apps and robust backend architectures. Open to new opportunities.",
   keywords: [
+    // Identity
     "Jawad Boulmal",
+    "Jawad Boulmal Developer",
+    "Jawad Boulmal Portfolio",
+    // Roles
     "Full Stack Developer",
+    "Full Stack Engineer",
+    "Software Engineer",
+    "Web Developer",
+    "Backend Developer",
+    "Frontend Developer",
+    // Location
+    "Web Developer Morocco",
+    "Full Stack Developer Morocco",
+    "Developer Casablanca",
+    "Développeur Web Maroc",
+    "Développeur Full Stack",
+    "Développeur Web Casablanca",
+    // Current stack
     "Java Developer",
+    "Spring Boot Developer",
     "Angular Developer",
-    "Spring Boot",
     "React Developer",
+    "Next.js Developer",
+    "Ruby on Rails Developer",
+    "Ruby Developer",
+    // Technologies
+    "Spring Boot",
+    "Angular",
     "Next.js",
+    "React.js",
     "TypeScript",
     "JavaScript",
     "Node.js",
-    "Morocco Developer",
-    "Casablanca",
-    "Web Development",
-    "Backend Development",
-    "Frontend Development",
-    "Software Engineer",
-    "Portfolio",
-    "YouCode UM6P",
-    "MediaVerse",
-    "REST API",
-    "PostgreSQL",
-    "MySQL",
-    "Docker",
-    "AWS",
+    "NestJS",
+    "Ruby on Rails",
     "Laravel",
     "PHP",
     "Flutter",
-    "Nest.js"
+    // Infrastructure
+    "REST API",
+    "Docker",
+    "AWS",
+    "PostgreSQL",
+    "MySQL",
+    "MongoDB",
+    // Companies & schools
+    "DabaDoc",
+    "MediaVerse",
+    "YouCode UM6P",
+    // General
+    "Portfolio",
+    "Web Development",
+    "API Development",
+    "Microservices",
   ],
   authors: [
     {
@@ -161,6 +189,9 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <StructuredData />
+        <link rel="dns-prefetch" href="https://github.com" />
+        <link rel="dns-prefetch" href="https://linkedin.com" />
+        <link rel="dns-prefetch" href="https://xdpqcrqkfauvdzdttcjr.supabase.co" />
         {gFontURL && (
           <>
             <link rel="preconnect" href="https://fonts.googleapis.com" />

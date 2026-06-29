@@ -70,6 +70,7 @@ export default function Navbar({ template = "minimal" }: { template?: string }) 
                   href={item.href}
                   target={isExternal ? "_blank" : undefined}
                   rel={isExternal ? "noopener noreferrer" : undefined}
+                  aria-label={item.label}
                 >
                   <DockIcon className={cn("rounded-3xl cursor-pointer size-full p-0 transition-colors", style.icon)}>
                     <item.icon className="size-full rounded-sm overflow-hidden object-contain" />
@@ -98,6 +99,7 @@ export default function Navbar({ template = "minimal" }: { template?: string }) 
                     href={social.url}
                     target={isExternal ? "_blank" : undefined}
                     rel={isExternal ? "noopener noreferrer" : undefined}
+                    aria-label={`${name} profile`}
                   >
                     <DockIcon className={cn("rounded-3xl cursor-pointer size-full p-0 transition-colors", style.icon)}>
                       <IconComponent className="size-full rounded-sm overflow-hidden object-contain" />

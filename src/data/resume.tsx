@@ -35,7 +35,7 @@ export const DATA = {
   location: "Casablanca, Morocco",
   locationLink: "https://www.google.com/maps/place/casablanca",
   description:
-    "Full Stack Developer . I love building robust architectures and solving complex backend problems. Open to new opportunities .",
+    "Full Stack Developer based in Casablanca, Morocco. I love building robust architectures and solving complex backend problems. Open to new opportunities.",
   summary:
     "Currently, I am a Full Stack Java/Angular Developer motivated by creating performant and reliable web solutions. I am completing my training at YouCode - UM6P, where I specialize in Java/JEE and modern web frameworks. Recently, I completed a development internship at MediaVerse, where I helped build the 'Qarib' application using Nest.js and Flutter. I also enjoy building complex backend architectures, having developed a B2B management system called SmartShop and a collaborative platform for developers called DevHub.",
   avatarUrl: "/web-app-manifest-512x512.jpg",

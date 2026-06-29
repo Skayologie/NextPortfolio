@@ -98,7 +98,7 @@ export const metadata: Metadata = {
     siteName: DATA.name,
     images: [
       {
-        url: `${DATA.url}/opengraph-image`,
+        url: `${DATA.url}/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Jawad Boulmal - Full Stack Developer",
@@ -110,7 +110,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: DATA.name,
     description: DATA.description,
-    images: [`${DATA.url}/opengraph-image`],
+    images: [`${DATA.url}/og-image.png`],
     creator: "@jawadboulmal",
   },
   robots: {

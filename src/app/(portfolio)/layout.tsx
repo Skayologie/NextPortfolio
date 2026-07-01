@@ -3,6 +3,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 import AnnouncementBanner from "@/components/announcement-banner";
 import PageTracker from "@/components/page-tracker";
+import { PageLoader } from "@/components/page-loader";
 import { getBanner, getActiveTemplate } from "@/lib/portfolio-data";
 
 const HIDE_FLICKER = new Set(["terminal", "creative", "buddy"]);
@@ -13,6 +14,7 @@ export default async function PortfolioLayout({ children }: { children: React.Re
 
   return (
     <TooltipProvider delayDuration={0}>
+      <PageLoader />
       <PageTracker />
       <AnnouncementBanner banner={banner} />
       {showFlicker && (

@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@/components/theme-provider";
+import NextTopLoader from "nextjs-toploader";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
 import type { Metadata, Viewport } from "next";
@@ -144,6 +145,7 @@ export default async function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="light">
+          <NextTopLoader color="hsl(var(--primary))" shadow={false} showSpinner={false} height={2} />
           {children}
         </ThemeProvider>
       </body>

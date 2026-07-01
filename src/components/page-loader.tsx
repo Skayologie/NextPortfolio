@@ -6,9 +6,9 @@ import { createPortal } from "react-dom";
 const LINES = [
   { text: "Initializing portfolio...", delay: 0 },
   { text: "Loading projects...",       delay: 400 },
-  { text: "Fetching experience...",    delay: 800 },
-  { text: "Building interface...",     delay: 1200 },
-  { text: "Welcome, Jawad Boulmal ✓", delay: 1600, highlight: true },
+  { text: "Fetching experience...",    delay: 500 },
+  { text: "Building interface...",     delay: 800 },
+  { text: "Welcome, Jawad Boulmal ✓", delay: 1200, highlight: true },
 ];
 
 const CHARS = "01アイウエカキクケコ{}[]()<>=/\\+-_.,const let function return class import export async await=>interface type React Next".split("");
@@ -86,8 +86,8 @@ export function PageLoader() {
       }, line.delay));
     });
 
-    t.push(setTimeout(() => setPhase("out"),  1700));
-    t.push(setTimeout(() => setPhase("gone"), 2200));
+    t.push(setTimeout(() => setPhase("out"),  2500));
+    t.push(setTimeout(() => setPhase("gone"), 3000));
 
     return () => t.forEach(clearTimeout);
   }, []);

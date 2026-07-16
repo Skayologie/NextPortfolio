@@ -213,9 +213,9 @@ export type SeoSettings = {
 const SEO_DEFAULTS: SeoSettings = {
   title: DATA.name,
   description:
-    "Jawad Boulmal — Full Stack Developer in Casablanca, Morocco. Expert in Java, Spring Boot, Angular, React & Next.js. Building scalable web apps and robust backend architectures.",
+    "Jawad Boulmal — Full Stack Developer at DabaDoc in Casablanca, Morocco. Building with Java, Spring Boot, Angular, React & Next.js.",
   keywords:
-    "Jawad Boulmal, Jawad Boulmal Developer, Full Stack Developer, Web Developer Morocco, Développeur Web Maroc, Java, Spring Boot, Angular, React, Next.js, TypeScript, Docker, DabaDoc",
+    "Jawad Boulmal, Jawad, Boulmal, Jaouad Boulmal, Jawad Boulmali, Jawad Boulmale, Jawad Boumal, جواد بولمال, جواد بو لمال, جواد بلمال, جواد بومال, جواد بولمالي, Jawad Boulmal Developer, Full Stack Developer, Web Developer Morocco, Développeur Web Maroc, Java, Spring Boot, Angular, React, Next.js, TypeScript, Docker, DabaDoc",
   googleVerification: "",
   ogImage: "/og-image.png",
 };

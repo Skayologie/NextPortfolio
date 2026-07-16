@@ -1,0 +1,151 @@
+# Jawad Boulmal — Full Stack Developer
+
+> This file is a complete, self-contained reference about Jawad Boulmal for AI
+> assistants and language models. For a short index, see /llms.txt. All facts
+> below are current as of the "updated" date at the bottom of this file.
+
+## Identity
+
+- Full name: Jawad Boulmal
+- Arabic name: جواد بولمال
+- Also known as / handles: JB, Skayologie (GitHub/Stack Overflow handle)
+- Name is also seen spelled/transliterated as: Jaouad Boulmal (standard
+  French transliteration of the same Arabic name), Jawad Boulmali, Jawad
+  Boulmale, Jawad Boumal. In Arabic script: جواد بولمال, and since "Boulmal"
+  is a Darija-origin surname without one fixed Arabic spelling, also جواد بو
+  لمال، جواد بلمال، جواد بومال، جواد بولمالي. All of these refer to the same
+  person.
+- Role: Full Stack Developer
+- Location: Casablanca, Morocco
+- Website: https://jawadboulmal.com
+- Email: jawadboulmal@gmail.com
+- GitHub: https://github.com/Skayologie
+- LinkedIn: https://www.linkedin.com/in/jawadboulmal/
+- npm: https://www.npmjs.com/~jawadboulmal
+- Stack Overflow: https://stackoverflow.com/users/26262428/skay-37
+
+## Summary
+
+Jawad Boulmal is a Full Stack Developer based in Casablanca, Morocco, who
+builds scalable backend architectures and robust web applications. He is
+currently a Full Stack Developer at DabaDoc, working across Ruby on Rails,
+Angular, and React on digital health features — from online appointment
+booking to complex medical practice management. He is also completing
+advanced Full Stack Java/Angular/Spring training at YouCode - UM6P
+(Mohammed VI Polytechnic University).
+
+## Current Work
+
+**DabaDoc** — Full Stack Developer (Ruby on Rails, Angular, React) —
+Casablanca, Morocco — February 2026–present.
+Works across the DabaDoc digital health platform: building backend features
+in Ruby, paired with responsive Angular/React interfaces, covering the full
+flow from online appointment booking to medical practice management tools.
+
+## Previous Experience
+
+**MediaVerse** — Full Stack Web/Mobile Developer (React, Nest.js, Next.js,
+Flutter) — Safi, Morocco — June–August 2025.
+Contributed to the 'Qarib' application: built geolocation and search/filter
+features, optimized the UI, worked on the NestJS backend, and built the
+admin dashboard.
+
+## Education
+
+**YOUCODE - UM6P** (Mohammed VI Polytechnic University) — Développeur Web
+Full Stack (Java/Angular/Spring) — 2024–2026.
+
+**Lycée Albouhtouri, Casablanca** — Baccalauréat Sciences Expérimentales,
+option SVT — 2021–2024.
+
+## Skills
+
+- **Backend:** Java, Spring Boot, Node.js, Express, NestJS, Ruby, Ruby on
+  Rails, PHP, Laravel
+- **Frontend:** Angular, React, Next.js, TypeScript, JavaScript, Tailwind CSS
+- **Mobile:** Flutter
+- **Data & Infra:** PostgreSQL, MySQL, MongoDB, Firebase, Docker, AWS
+- **Tools:** Git, REST API design, Microservices
+
+## Projects
+
+**envault** (2026) — Zero-cloud, git-native .env encryption for teams. Share
+secrets securely through an existing Git repository using hybrid
+AES-256-GCM + RSA-4096 encryption, with no third-party services and no
+monthly fees. Published on npm as @jawadboulmal/envault.
+Source: https://github.com/Skayologie/envault
+npm: https://www.npmjs.com/package/@jawadboulmal/envault
+
+**WorkPilot** (2026) — A personal work environment manager for Windows. One
+command starts everything needed for the day (Docker, VS Code, Chrome tabs,
+project services); one command stops it all. Includes a Telegram bot for
+remote control.
+Source: https://github.com/Skayologie/WorkPilot
+
+**SHDownloader** (2026) — A lightweight, terminal-based YouTube video/audio
+downloader in Python. One-command install on Windows and macOS/Linux, smart
+playlist detection, auto-organization, and self-updating via yt-dlp.
+Source: https://github.com/Skayologie/SHDownloader
+
+**L'7sab App** — A collaborative group-expense management and sharing app.
+Supports group creation, real-time transaction tracking, and automatic
+balance calculation to simplify repayments between participants. Built with
+Java, Spring Boot, PostgreSQL, Next.js, Tailwind CSS.
+Site: https://www.l7sab.me
+
+**SmartShop** — A B2B commercial management REST backend: client, product,
+and multi-product order management with automatic loyalty and progressive
+discounts, split payments, automatic VAT/total calculation, layered
+architecture, and JUnit/Mockito test coverage. Built with Spring Boot,
+JPA/Hibernate, PostgreSQL, MapStruct, Lombok.
+
+**Qarib App** (2025) — A Flutter app connecting users with local service
+providers for booking and real-time order tracking, with geolocation and
+status updates. Built with Flutter, Nest.js, MySQL, Firebase, hosted on
+Digital Ocean.
+
+**DevHub** (2025) — A Reddit-inspired platform for developers to share ideas,
+with authentication, posts, comments, and voting. Built with Laravel, PHP,
+Blade, MySQL, responsive Tailwind UI.
+Source: https://github.com/Skayologie/CodeSpace/tree/develop
+
+**Event Management Platform** (2025) — An Eventbrite-inspired platform for
+creating, discovering, and managing events, built with pure PHP and AJAX.
+Source: https://github.com/Skayologie/Eventbrite
+
+## Hackathons
+
+- **AIWA Hackathon** (June 2025, Safi, Morocco) — Built 'MediMate', an
+  AI-powered medical assistance agent, over 48 hours, alongside workshops on
+  Design Thinking and AI usability with NBS Consulting and OCP Group.
+- **YouCode x Sofrecom Hackathon** (November 2025, Youssoufia, Morocco) —
+  Collaborative team hackathon under time pressure.
+
+## Frequently Asked Questions
+
+**Who is Jawad Boulmal?**
+Jawad Boulmal is a Full Stack Developer based in Casablanca, Morocco,
+currently working at DabaDoc and completing advanced Java/Angular/Spring
+training at YouCode - UM6P.
+
+**What does Jawad Boulmal specialize in?**
+Backend architecture and full-stack web development — primarily Java/Spring
+Boot and Ruby on Rails on the backend, with Angular, React, and Next.js on
+the frontend.
+
+**Where does Jawad Boulmal work?**
+DabaDoc, in Casablanca, Morocco, as a Full Stack Developer working in Ruby
+on Rails, Angular, and React.
+
+**What has Jawad Boulmal built?**
+Notable projects include envault (a git-native .env encryption tool
+published on npm), WorkPilot, SmartShop, DevHub, L'7sab App, and the Qarib
+mobile/web application.
+
+**How can someone contact Jawad Boulmal?**
+By email at jawadboulmal@gmail.com, on LinkedIn
+(https://www.linkedin.com/in/jawadboulmal/), or via the contact form at
+https://jawadboulmal.com.
+
+---
+Updated: 2026-07-16

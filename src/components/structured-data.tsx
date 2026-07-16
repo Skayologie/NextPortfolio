@@ -11,7 +11,28 @@ export async function StructuredData() {
     '@type': 'Person',
     '@id': PERSON_ID,
     name: 'Jawad Boulmal',
-    alternateName: 'JB',
+    // Common misspellings/transliteration variants of an Arabic name in a
+    // French-speaking country (e.g. "Jaouad" is the standard French
+    // transliteration of the same name as "Jawad"), plus his handle used
+    // across GitHub/npm/Stack Overflow. Tells search engines these all
+    // refer to the same entity, so typo'd queries still resolve to him.
+    alternateName: [
+      'JB',
+      'Skayologie',
+      'Jaouad Boulmal',
+      'Jawad Boulmali',
+      'Jawad Boulmale',
+      'Jawad Boumal',
+      'Boulmal Jawad',
+      'جواد بولمال',
+      // "Boulmal" is a Darija-origin surname with no single fixed Arabic
+      // spelling (unlike "Jawad", which is a standard classical name).
+      // These cover the realistic variants for that surname specifically.
+      'جواد بو لمال',
+      'جواد بلمال',
+      'جواد بومال',
+      'جواد بولمالي',
+    ],
     description: seo.description,
     url: DATA.url,
     image: {
@@ -23,6 +44,10 @@ export async function StructuredData() {
     sameAs: [
       DATA.contact.social.GitHub.url,
       DATA.contact.social.LinkedIn.url,
+      'https://www.npmjs.com/~jawadboulmal',
+      'https://stackoverflow.com/users/26262428/skay-37',
+      'https://www.instagram.com/skay37_/',
+      'https://www.facebook.com/ASMMID',
     ],
     address: {
       '@type': 'PostalAddress',
@@ -33,10 +58,11 @@ export async function StructuredData() {
     jobTitle: 'Full Stack Developer',
     worksFor: {
       '@type': 'Organization',
-      name: 'MediaVerse',
+      name: 'DabaDoc',
+      url: 'https://www.dabadoc.com/ma',
       address: {
         '@type': 'PostalAddress',
-        addressLocality: 'Safi',
+        addressLocality: 'Casablanca',
         addressCountry: 'MA',
       },
     },
@@ -46,11 +72,7 @@ export async function StructuredData() {
         name: 'YOUCODE - UM6P',
       },
     ],
-    knowsAbout: [
-      'Java', 'Spring Boot', 'Angular', 'React', 'Next.js',
-      'TypeScript', 'JavaScript', 'Node.js', 'PostgreSQL',
-      'MySQL', 'Docker', 'AWS', 'Laravel', 'PHP', 'Flutter', 'Nest.js',
-    ],
+    knowsAbout: DATA.skills.map((skill) => skill.name),
   }
 
   const website = {
@@ -115,7 +137,55 @@ export async function StructuredData() {
     })),
   }
 
-  const schemas = [person, website, profilePage, creativeWork];
+  const faq = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${DATA.url}#faq`,
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Who is Jawad Boulmal?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Jawad Boulmal is a Full Stack Developer based in Casablanca, Morocco, currently working at DabaDoc and completing advanced Java/Angular/Spring training at YouCode - UM6P (Mohammed VI Polytechnic University).',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What technologies does Jawad Boulmal work with?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Jawad Boulmal builds with Java, Spring Boot, Angular, React, Next.js, TypeScript, Node.js, Ruby on Rails, and Laravel, with additional experience in Docker, AWS, PostgreSQL, MySQL, and Flutter.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Where does Jawad Boulmal work?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Jawad Boulmal currently works as a Full Stack Developer at DabaDoc in Casablanca, Morocco, building features in Ruby on Rails, Angular, and React. He previously interned at MediaVerse in Safi, Morocco, on the Qarib app.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What projects has Jawad Boulmal built?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: "Jawad Boulmal has built envault (a git-native .env encryption CLI tool published on npm), WorkPilot, SmartShop, DevHub, L'7sab App, and the Qarib mobile/web application.",
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How can I contact Jawad Boulmal?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `You can contact Jawad Boulmal by email at ${DATA.contact.email}, on LinkedIn, or through the contact form on this website.`,
+        },
+      },
+    ],
+  }
+
+  const schemas = [person, website, profilePage, creativeWork, faq];
 
   return (
     <>

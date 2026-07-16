@@ -2,6 +2,9 @@
 
 > Personal portfolio and blog of Jawad Boulmal, a Full Stack Developer based in Casablanca, Morocco. Specializing in Java, Spring Boot, Angular, React, and Next.js.
 
+For the complete reference (full work history, all projects, FAQ), see:
+https://jawadboulmal.com/llms-full.txt
+
 ## About
 
 Jawad Boulmal is a Full Stack Developer passionate about building scalable architectures and solving complex backend challenges. Currently working at DabaDoc and completing advanced training at YouCode - UM6P (Mohammed VI Polytechnic University). Open to new opportunities.

@@ -24,6 +24,14 @@ export async function StructuredData() {
       'Jawad Boulmale',
       'Jawad Boumal',
       'Boulmal Jawad',
+      // "Jawed"/"Jawwad" are genuine alternate transliterations in real use
+      // (e.g. Jawed Karim, YouTube's co-founder), not typos.
+      'Jawed Boulmal',
+      'Jawwad Boulmal',
+      // Dropped-interior-consonant typo pattern (e.g. "Jaad Boulal").
+      'Jaad Boulal',
+      'Jawad Boulal',
+      'Jaad Boulmal',
       'جواد بولمال',
       // "Boulmal" is a Darija-origin surname with no single fixed Arabic
       // spelling (unlike "Jawad", which is a standard classical name).

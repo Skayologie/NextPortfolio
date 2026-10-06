@@ -10,11 +10,13 @@
 - Arabic name: جواد بولمال
 - Also known as / handles: JB, Skayologie (GitHub/Stack Overflow handle)
 - Name is also seen spelled/transliterated as: Jaouad Boulmal (standard
-  French transliteration of the same Arabic name), Jawad Boulmali, Jawad
-  Boulmale, Jawad Boumal. In Arabic script: جواد بولمال, and since "Boulmal"
-  is a Darija-origin surname without one fixed Arabic spelling, also جواد بو
-  لمال، جواد بلمال، جواد بومال، جواد بولمالي. All of these refer to the same
-  person.
+  French transliteration of the same Arabic name), Jawed Boulmal / Jawwad
+  Boulmal (genuine alternate transliterations, not typos), Jawad Boulmali,
+  Jawad Boulmale, Jawad Boumal. It is also sometimes typed with a dropped
+  interior consonant, e.g. "Jaad Boulal" for "Jawad Boulmal". In Arabic
+  script: جواد بولمال, and since "Boulmal" is a Darija-origin surname
+  without one fixed Arabic spelling, also جواد بو لمال، جواد بلمال، جواد
+  بومال، جواد بولمالي. All of these refer to the same person.
 - Role: Full Stack Developer
 - Location: Casablanca, Morocco
 - Website: https://jawadboulmal.com

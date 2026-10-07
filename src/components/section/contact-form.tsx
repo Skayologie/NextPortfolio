@@ -24,9 +24,16 @@ export function ContactForm() {
     null
   );
   const [showConfirm, setShowConfirm] = useState(false);
+  const [now, setNow] = useState(() => Date.now());
   const [blockedUntil, setBlockedUntil] = useState<number | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const confirmedRef = useRef(false);
+
+  useEffect(() => {
+    if (!blockedUntil) return;
+    const timer = setInterval(() => setNow(Date.now()), 30_000);
+    return () => clearInterval(timer);
+  }, [blockedUntil]);
 
   // On mount: restore blocked state from localStorage
   useEffect(() => {
@@ -34,6 +41,8 @@ export function ContactForm() {
     if (stored) {
       const until = parseInt(stored, 10);
       if (until > Date.now()) {
+        // Restore browser-only persisted state after hydration.
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setBlockedUntil(until);
       } else {
         localStorage.removeItem(LS_KEY);
@@ -46,6 +55,8 @@ export function ContactForm() {
     if (!state) return;
     if (state.blockedUntil) {
       localStorage.setItem(LS_KEY, String(state.blockedUntil));
+      // Synchronize the cooldown returned by the server action.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setBlockedUntil(state.blockedUntil);
     }
     if (state.success) {
@@ -68,7 +79,7 @@ export function ContactForm() {
     formRef.current?.requestSubmit();
   };
 
-  const remaining = blockedUntil ? blockedUntil - Date.now() : 0;
+  const remaining = blockedUntil ? blockedUntil - now : 0;
   const isBlocked = remaining > 0;
 
   return (
@@ -76,6 +87,7 @@ export function ContactForm() {
       ref={formRef}
       action={action}
       onSubmit={handleSubmit}
+      aria-busy={isPending}
       className="flex flex-col gap-4 w-full"
     >
       {/* Blocked from a PREVIOUS session — only show when there is no fresh action result */}
@@ -91,6 +103,7 @@ export function ContactForm() {
       {/* Current action result — success or error from this session */}
       {state && !showConfirm && (
         <div
+          role={state.success ? "status" : "alert"}
           className={cn(
             "flex items-start gap-2.5 text-sm rounded-lg px-4 py-3",
             state.success
@@ -110,6 +123,7 @@ export function ContactForm() {
           <input
             id="full_name"
             name="full_name"
+            autoComplete="name"
             type="text"
             placeholder="John Doe"
             required
@@ -124,6 +138,7 @@ export function ContactForm() {
           <input
             id="email"
             name="email"
+            autoComplete="email"
             type="email"
             placeholder="john@example.com"
             required

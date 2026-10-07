@@ -1,3 +1,4 @@
+import { projectSummary, projectPath } from "@/lib/projects";
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import Markdown from "react-markdown";
@@ -102,7 +103,7 @@ export default function SidebarTemplate({ data }: { data: PortfolioData }) {
             {work.map(w => (
               <div key={w.company} className="group flex gap-4 p-5 rounded-xl border border-border bg-card/50 hover:bg-card hover:shadow-md transition-all hover:border-primary/30">
                 {w.logoUrl
-                  ? <img src={w.logoUrl} alt={w.company} className="size-11 rounded-lg border object-contain p-1 bg-background shrink-0 mt-0.5" />
+                  ? <img loading="lazy" decoding="async" src={w.logoUrl} alt={w.company} className="size-11 rounded-lg border object-contain p-1 bg-background shrink-0 mt-0.5" />
                   : <div className="size-11 rounded-lg border bg-muted shrink-0 mt-0.5" />}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-3 flex-wrap mb-1">
@@ -134,7 +135,7 @@ export default function SidebarTemplate({ data }: { data: PortfolioData }) {
             {education.map(e => (
               <Link key={e.school} href={e.href} target="_blank" className="group flex gap-4 p-5 rounded-xl border border-border bg-card/50 hover:bg-card hover:shadow-md transition-all hover:border-primary/30">
                 {e.logoUrl
-                  ? <img src={e.logoUrl} alt={e.school} className="size-11 rounded-lg border object-contain p-1 bg-background shrink-0" />
+                  ? <img loading="lazy" decoding="async" src={e.logoUrl} alt={e.school} className="size-11 rounded-lg border object-contain p-1 bg-background shrink-0" />
                   : <div className="size-11 rounded-lg border bg-muted shrink-0" />}
                 <div className="flex-1">
                   <p className="font-semibold group-hover:text-primary transition-colors">{e.school}</p>
@@ -157,7 +158,7 @@ export default function SidebarTemplate({ data }: { data: PortfolioData }) {
               const Icon = !s.iconUrl ? SKILL_ICONS[s.iconKey] : null;
               return (
                 <div key={s.id} className="flex items-center gap-2 px-3 py-2 rounded-xl border border-border bg-card hover:border-primary/50 hover:bg-primary/5 transition-all shadow-sm">
-                  {s.iconUrl ? <img src={s.iconUrl} alt={s.name} className="size-5 object-contain" /> : Icon ? <Icon className="size-5" /> : null}
+                  {s.iconUrl ? <img loading="lazy" decoding="async" src={s.iconUrl} alt={s.name} className="size-5 object-contain" /> : Icon ? <Icon className="size-5" /> : null}
                   <span className="text-sm font-medium">{s.name}</span>
                 </div>
               );
@@ -174,11 +175,11 @@ export default function SidebarTemplate({ data }: { data: PortfolioData }) {
           <ProjectsPaginated className="flex flex-col gap-5">
             {projects.map(p => (
               <div key={p.title} className="group flex flex-col sm:flex-row gap-4 border border-border rounded-xl bg-card/50 overflow-hidden hover:shadow-lg transition-all hover:border-primary/30">
-                {p.image && <img src={p.image} alt={p.title} className="w-full sm:w-40 h-40 sm:h-auto object-cover shrink-0" />}
+                {p.image && <img loading="lazy" decoding="async" src={p.image} alt={p.title} className="w-full sm:w-40 h-40 sm:h-auto object-cover shrink-0" />}
                 <div className="flex-1 p-5">
                   <p className="font-semibold text-base mb-1 group-hover:text-primary transition-colors">{p.title}</p>
                   <p className="text-xs text-muted-foreground mb-2">{p.dates}</p>
-                  <p className="text-sm text-muted-foreground mb-3">{p.description}</p>
+                  <p className="text-sm text-muted-foreground mb-3">{projectSummary(p.description)}</p>
                   <div className="flex flex-wrap gap-1 mb-3">
                     {p.technologies.slice(0, 5).map(t => <Badge key={t} variant="secondary" className="text-xs">{t}</Badge>)}
                   </div>
@@ -206,7 +207,7 @@ export default function SidebarTemplate({ data }: { data: PortfolioData }) {
             {hackathons.map(h => (
               <div key={h.title} className="flex gap-3 p-4 border border-border rounded-xl bg-card/50 hover:border-primary/30 hover:shadow-sm transition-all">
                 {h.image
-                  ? <img src={h.image} alt={h.title} className="size-10 rounded-full border object-contain p-1 bg-muted shrink-0" />
+                  ? <img loading="lazy" decoding="async" src={h.image} alt={h.title} className="size-10 rounded-full border object-contain p-1 bg-muted shrink-0" />
                   : <div className="size-10 rounded-full border bg-muted shrink-0" />}
                 <div>
                   <p className="font-semibold text-sm">{h.title}</p>

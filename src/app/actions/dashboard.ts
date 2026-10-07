@@ -226,6 +226,9 @@ export async function saveProject(_: AR, fd: FormData): Promise<AR> {
     : await db().from("projects").insert(projectPayload(fd));
   if (error) return { error: error.message };
   revalidatePath("/");
+  revalidatePath("/projects");
+  revalidatePath("/projects/[slug]", "page");
+  revalidatePath("/sitemap.xml");
   return { success: true };
 }
 export async function deleteProject(_: AR, fd: FormData): Promise<AR> {
@@ -233,6 +236,9 @@ export async function deleteProject(_: AR, fd: FormData): Promise<AR> {
   const { error } = await db().from("projects").delete().eq("id", fd.get("id") as string);
   if (error) return { error: error.message };
   revalidatePath("/");
+  revalidatePath("/projects");
+  revalidatePath("/projects/[slug]", "page");
+  revalidatePath("/sitemap.xml");
   return { success: true };
 }
 

@@ -1,30 +1,16 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 import { DATA } from "@/data/resume";
 import { allPosts } from "content-collections";
+import { getProjects } from "@/lib/portfolio-data";
+import { projectPath } from "@/lib/projects";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = DATA.url;
-
-  const blogPosts = allPosts.map((post) => ({
-    url: `${baseUrl}/blog/${post._meta.path.replace(/\.mdx$/, "")}`,
-    lastModified: new Date(post.publishedAt),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
-
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const projects = await getProjects();
   return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    ...blogPosts,
+    { url: DATA.url },
+    { url: `${DATA.url}/blog` },
+    { url: `${DATA.url}/projects` },
+    ...projects.map(project => ({ url: `${DATA.url}${projectPath(project)}` })),
+    ...allPosts.map(post => ({ url: `${DATA.url}/blog/${post._meta.path.replace(/\.mdx$/, "")}`, lastModified: new Date(post.updatedAt ?? post.publishedAt) })),
   ];
 }

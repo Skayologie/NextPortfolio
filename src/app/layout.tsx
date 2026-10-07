@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import { StructuredData } from "@/components/structured-data";
 import { getActiveTheme, getSeoSettings } from "@/lib/portfolio-data";
 import { buildThemeCSS, googleFontURL } from "@/lib/themes";
 import type { ThemeKey } from "@/lib/themes";
@@ -115,7 +114,6 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <StructuredData />
         <link rel="dns-prefetch" href="https://github.com" />
         <link rel="dns-prefetch" href="https://linkedin.com" />
         <link rel="dns-prefetch" href="https://xdpqcrqkfauvdzdttcjr.supabase.co" />

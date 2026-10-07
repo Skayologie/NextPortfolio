@@ -1,3 +1,4 @@
+import { projectSummary, projectPath } from "@/lib/projects";
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import Markdown from "react-markdown";
@@ -67,7 +68,7 @@ export default function CreativeTemplate({ data }: { data: PortfolioData }) {
             {work.map(w => (
               <div key={w.company} className="group flex gap-4 p-5 rounded-xl bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.07] hover:border-indigo-500/30 transition-all">
                 {w.logoUrl
-                  ? <img src={w.logoUrl} alt={w.company} className="size-10 rounded-lg border border-white/10 object-contain p-1 bg-white/5 shrink-0 mt-0.5" />
+                  ? <img loading="lazy" decoding="async" src={w.logoUrl} alt={w.company} className="size-10 rounded-lg border border-white/10 object-contain p-1 bg-white/5 shrink-0 mt-0.5" />
                   : <div className="size-10 rounded-lg border border-white/10 bg-indigo-950 shrink-0 mt-0.5" />}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-3 flex-wrap mb-1">
@@ -95,7 +96,7 @@ export default function CreativeTemplate({ data }: { data: PortfolioData }) {
           <div className="flex flex-col sm:flex-row gap-3">
             {education.map(e => (
               <Link key={e.school} href={e.href} target="_blank" className="group flex-1 p-5 rounded-xl bg-white/[0.04] border border-white/[0.08] hover:border-indigo-500/30 hover:bg-white/[0.07] transition-all">
-                {e.logoUrl && <img src={e.logoUrl} alt={e.school} className="size-10 rounded-lg border border-white/10 object-contain p-1 bg-white/5 mb-4" />}
+                {e.logoUrl && <img loading="lazy" decoding="async" src={e.logoUrl} alt={e.school} className="size-10 rounded-lg border border-white/10 object-contain p-1 bg-white/5 mb-4" />}
                 <p className="font-semibold text-white group-hover:text-indigo-300 transition-colors">{e.school}</p>
                 <p className="text-sm text-slate-400 mt-1">{e.degree}</p>
                 <p className="text-xs text-slate-600 mt-0.5">{e.start} – {e.end}</p>
@@ -112,7 +113,7 @@ export default function CreativeTemplate({ data }: { data: PortfolioData }) {
               const Icon = !s.iconUrl ? SKILL_ICONS[s.iconKey] : null;
               return (
                 <div key={s.id} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/[0.05] border border-white/[0.08] hover:border-indigo-400/40 hover:bg-indigo-950/60 transition-all">
-                  {s.iconUrl ? <img src={s.iconUrl} alt={s.name} className="size-4 object-contain" /> : Icon ? <Icon className="size-4 text-slate-400" /> : null}
+                  {s.iconUrl ? <img loading="lazy" decoding="async" src={s.iconUrl} alt={s.name} className="size-4 object-contain" /> : Icon ? <Icon className="size-4 text-slate-400" /> : null}
                   <span className="text-sm text-slate-300">{s.name}</span>
                 </div>
               );
@@ -127,12 +128,12 @@ export default function CreativeTemplate({ data }: { data: PortfolioData }) {
             {projects.map(p => (
               <div key={p.title} className="group flex flex-col rounded-xl bg-white/[0.04] border border-white/[0.08] overflow-hidden hover:border-indigo-500/30 hover:shadow-xl hover:shadow-indigo-900/20 transition-all">
                 {p.image
-                  ? <img src={p.image} alt={p.title} className="w-full h-36 object-cover opacity-60 group-hover:opacity-80 transition-opacity" />
+                  ? <img loading="lazy" decoding="async" src={p.image} alt={p.title} className="w-full h-36 object-cover opacity-60 group-hover:opacity-80 transition-opacity" />
                   : <div className="w-full h-36 bg-gradient-to-br from-indigo-950 to-slate-900" />}
                 <div className="flex-1 flex flex-col gap-2 p-4">
                   <p className="font-semibold text-white">{p.title}</p>
                   <p className="text-xs text-slate-600">{p.dates}</p>
-                  <p className="text-sm text-slate-400 flex-1 line-clamp-2">{p.description}</p>
+                  <p className="text-sm text-slate-400 flex-1 line-clamp-2">{projectSummary(p.description)}</p>
                   <div className="flex flex-wrap gap-1 mt-1">
                     {p.technologies.slice(0, 4).map(t => <span key={t} className="text-xs px-1.5 py-0.5 rounded bg-indigo-900/60 text-indigo-300 border border-indigo-800/60">{t}</span>)}
                   </div>
@@ -157,7 +158,7 @@ export default function CreativeTemplate({ data }: { data: PortfolioData }) {
             {hackathons.map(h => (
               <div key={h.title} className="flex gap-4 p-4 rounded-xl bg-white/[0.04] border border-white/[0.08] hover:border-indigo-500/30 transition-all">
                 {h.image
-                  ? <img src={h.image} alt={h.title} className="size-10 rounded-lg border border-white/10 object-contain p-1 bg-white/5 shrink-0" />
+                  ? <img loading="lazy" decoding="async" src={h.image} alt={h.title} className="size-10 rounded-lg border border-white/10 object-contain p-1 bg-white/5 shrink-0" />
                   : <div className="size-10 rounded-lg border border-white/10 bg-indigo-950 shrink-0" />}
                 <div>
                   <p className="font-semibold text-white">{h.title}</p>

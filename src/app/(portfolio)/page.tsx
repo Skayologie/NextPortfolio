@@ -1,3 +1,4 @@
+import { StructuredData } from "@/components/structured-data";
 import { getAbout, getWorkExperience, getEducation, getHero, getSkills, getProjects, getHackathons, getActiveTemplate, getTemplateCustomization } from "@/lib/portfolio-data";
 import MinimalTemplate from "@/templates/minimal";
 import TerminalTemplate from "@/templates/terminal";
@@ -24,6 +25,7 @@ export default async function Page() {
   const customization = await getTemplateCustomization(activeTemplate);
   const data: PortfolioData = { hero, about, work, education, skills, projects, hackathons, customization };
 
+  const template = (() => {
   switch (activeTemplate) {
     case "terminal":  return <TerminalTemplate data={data} />;
     case "bento":     return <BentoTemplate data={data} />;
@@ -34,4 +36,6 @@ export default async function Page() {
     case "buddy":     return <BuddyTemplate data={data} />;
     default:          return <MinimalTemplate data={data} />;
   }
+  })();
+  return <><StructuredData />{template}</>;
 }

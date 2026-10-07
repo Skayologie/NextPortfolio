@@ -28,8 +28,9 @@ export function ProjectsPaginated({
           <button
             type="button"
             onClick={() => setPage(p => Math.max(0, p - 1))}
+            aria-label="Previous projects"
             disabled={page === 0}
-            className="flex items-center justify-center size-8 rounded-lg border border-border bg-card text-muted-foreground hover:text-foreground hover:bg-muted disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+            className="flex items-center justify-center size-11 rounded-lg border border-border bg-card text-muted-foreground hover:text-foreground hover:bg-muted disabled:opacity-30 disabled:cursor-not-allowed transition-all"
           >
             <ChevronLeft className="size-4" />
           </button>
@@ -39,21 +40,20 @@ export function ProjectsPaginated({
               <button
                 key={i}
                 type="button"
+                aria-label={`Projects page ${i + 1}`}
+                aria-current={i === page ? "page" : undefined}
                 onClick={() => setPage(i)}
-                className={`rounded-full transition-all ${
-                  i === page
-                    ? "size-2.5 bg-foreground"
-                    : "size-2 bg-border hover:bg-muted-foreground"
-                }`}
-              />
+                className={`size-11 rounded-full transition-colors ${i === page ? "bg-foreground text-background" : "border border-border hover:bg-muted"}`}
+              >{i + 1}</button>
             ))}
           </div>
 
           <button
             type="button"
             onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
+            aria-label="Next projects"
             disabled={page === totalPages - 1}
-            className="flex items-center justify-center size-8 rounded-lg border border-border bg-card text-muted-foreground hover:text-foreground hover:bg-muted disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+            className="flex items-center justify-center size-11 rounded-lg border border-border bg-card text-muted-foreground hover:text-foreground hover:bg-muted disabled:opacity-30 disabled:cursor-not-allowed transition-all"
           >
             <ChevronRight className="size-4" />
           </button>

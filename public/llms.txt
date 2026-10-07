@@ -1,45 +1,12 @@
-# Jawad Boulmal — Full Stack Developer Portfolio
+# Jawad Boulmal — Full Stack Developer
 
-> Personal portfolio and blog of Jawad Boulmal, a Full Stack Developer based in Casablanca, Morocco. Specializing in Java, Spring Boot, Angular, React, and Next.js.
+Jawad Boulmal is a Full Stack Developer based in Casablanca, Morocco, working at DabaDoc with Ruby on Rails, Angular and React. He also builds backend projects with Java and Spring Boot.
 
-For the complete reference (full work history, all projects, FAQ), see:
-https://jawadboulmal.com/llms-full.txt
-
-## About
-
-Jawad Boulmal is a Full Stack Developer passionate about building scalable architectures and solving complex backend challenges. Currently working at DabaDoc and completing advanced training at YouCode - UM6P (Mohammed VI Polytechnic University). Open to new opportunities.
-
-## Skills
-
-- **Backend:** Java, Spring Boot, NestJS, Node.js, Ruby on Rails, Laravel, PHP
-- **Frontend:** Angular, React, Next.js, TypeScript, JavaScript, Tailwind CSS
-- **Mobile:** Flutter
-- **Infrastructure:** Docker, AWS, PostgreSQL, MySQL, MongoDB, REST API, Microservices
-- **Tools:** Git, GitHub
-
-## Pages
-
-- [Home](https://jawadboulmal.com): Portfolio homepage — skills, projects, work experience, education, and contact form
-- [Blog](https://jawadboulmal.com/blog): Technical articles on software development, Java, Angular, React, and more
-
-## Work Experience
-
-- **DabaDoc** — Full Stack Developer (current)
-- **MediaVerse** — Development Intern (built the 'Qarib' app with NestJS and Flutter)
-
-## Education
-
-- **YouCode - UM6P** — Full Stack Java/Angular specialization (current)
-
-## Notable Projects
-
-- **SmartShop** — B2B management platform
-- **DevHub** — Collaborative platform for developers
-- **Qarib** — Mobile/web application built with NestJS and Flutter
-
-## Contact
-
-- Website: https://jawadboulmal.com
+- Website: https://www.jawadboulmal.com
+- Projects: https://www.jawadboulmal.com/projects
+- Blog: https://www.jawadboulmal.com/blog
 - GitHub: https://github.com/Skayologie
-- LinkedIn: https://linkedin.com/in/jawad-boulmal
-- Email: jawad.boulmal@dabadoc.com
+- LinkedIn: https://www.linkedin.com/in/jawadboulmal/
+- Email: jawadboulmal@gmail.com
+
+The portfolio pages are the primary source for current project descriptions and experience. Project pages describe the work and link to available demos and repositories.

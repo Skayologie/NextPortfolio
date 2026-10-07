@@ -1,3 +1,4 @@
+import { projectSummary, projectPath } from "@/lib/projects";
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import Markdown from "react-markdown";
@@ -63,7 +64,7 @@ export default function TerminalTemplate({ data }: { data: PortfolioData }) {
             {work.map(w => (
               <div key={w.company} className="flex gap-4 py-6 border-b border-zinc-900 last:border-0">
                 {w.logoUrl
-                  ? <img src={w.logoUrl} alt={w.company} className="size-9 rounded-lg border border-zinc-800 object-contain p-1 bg-zinc-900 shrink-0 mt-0.5" />
+                  ? <img loading="lazy" decoding="async" src={w.logoUrl} alt={w.company} className="size-9 rounded-lg border border-zinc-800 object-contain p-1 bg-zinc-900 shrink-0 mt-0.5" />
                   : <div className="size-9 rounded-lg border border-zinc-800 bg-zinc-900 shrink-0 mt-0.5" />}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-3 flex-wrap mb-1">
@@ -92,7 +93,7 @@ export default function TerminalTemplate({ data }: { data: PortfolioData }) {
             {education.map(e => (
               <Link key={e.school} href={e.href} target="_blank" className="flex gap-4 items-center group">
                 {e.logoUrl
-                  ? <img src={e.logoUrl} alt={e.school} className="size-9 rounded-lg border border-zinc-800 object-contain p-1 bg-zinc-900 shrink-0" />
+                  ? <img loading="lazy" decoding="async" src={e.logoUrl} alt={e.school} className="size-9 rounded-lg border border-zinc-800 object-contain p-1 bg-zinc-900 shrink-0" />
                   : <div className="size-9 rounded-lg border border-zinc-800 bg-zinc-900 shrink-0" />}
                 <div className="flex-1">
                   <p className="font-semibold text-white group-hover:text-zinc-300 transition-colors">{e.school}</p>
@@ -112,7 +113,7 @@ export default function TerminalTemplate({ data }: { data: PortfolioData }) {
               const Icon = !s.iconUrl ? SKILL_ICONS[s.iconKey] : null;
               return (
                 <div key={s.id} className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-zinc-800 bg-zinc-900/60 hover:border-zinc-700 hover:bg-zinc-900 transition-all">
-                  {s.iconUrl ? <img src={s.iconUrl} alt={s.name} className="size-4 object-contain" /> : Icon ? <Icon className="size-4 text-zinc-500" /> : null}
+                  {s.iconUrl ? <img loading="lazy" decoding="async" src={s.iconUrl} alt={s.name} className="size-4 object-contain" /> : Icon ? <Icon className="size-4 text-zinc-500" /> : null}
                   <span className="text-sm text-zinc-300">{s.name}</span>
                 </div>
               );
@@ -127,12 +128,12 @@ export default function TerminalTemplate({ data }: { data: PortfolioData }) {
             {projects.map(p => (
               <div key={p.title} className="rounded-xl border border-zinc-800 bg-zinc-900/50 overflow-hidden group hover:border-zinc-700 transition-all">
                 {p.image
-                  ? <img src={p.image} alt={p.title} className="w-full h-32 object-cover opacity-50 group-hover:opacity-70 transition-opacity" />
+                  ? <img loading="lazy" decoding="async" src={p.image} alt={p.title} className="w-full h-32 object-cover opacity-50 group-hover:opacity-70 transition-opacity" />
                   : <div className="w-full h-32 bg-zinc-900" />}
                 <div className="p-4">
                   <p className="font-semibold text-white">{p.title}</p>
                   <p className="text-xs text-zinc-700 mb-1">{p.dates}</p>
-                  <p className="text-sm text-zinc-500 line-clamp-2">{p.description}</p>
+                  <p className="text-sm text-zinc-500 line-clamp-2">{projectSummary(p.description)}</p>
                   <div className="flex flex-wrap gap-1 mt-2">
                     {p.technologies.slice(0, 4).map(t => <span key={t} className="text-xs px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-500">{t}</span>)}
                   </div>
@@ -157,7 +158,7 @@ export default function TerminalTemplate({ data }: { data: PortfolioData }) {
             {hackathons.map(h => (
               <div key={h.title} className="flex gap-4">
                 {h.image
-                  ? <img src={h.image} alt={h.title} className="size-10 rounded-lg border border-zinc-800 object-contain p-1 bg-zinc-900 shrink-0" />
+                  ? <img loading="lazy" decoding="async" src={h.image} alt={h.title} className="size-10 rounded-lg border border-zinc-800 object-contain p-1 bg-zinc-900 shrink-0" />
                   : <div className="size-10 rounded-lg border border-zinc-800 bg-zinc-900 shrink-0" />}
                 <div>
                   <p className="font-semibold text-white">{h.title}</p>

@@ -31,13 +31,13 @@ type HackathonLink = {
 export const DATA = {
   name: "Jawad Boulmal | Full Stack Developer",
   initials: "JB",
-  url: "https://jawadboulmal.com",
+  url: "https://www.jawadboulmal.com",
   location: "Casablanca, Morocco",
   locationLink: "https://www.google.com/maps/place/casablanca",
   description:
     "Full Stack Developer based in Casablanca, Morocco. I love building robust architectures and solving complex backend problems. Open to new opportunities.",
   summary:
-    "Currently, I am a Full Stack Java/Angular Developer motivated by creating performant and reliable web solutions. I am completing my training at YouCode - UM6P, where I specialize in Java/JEE and modern web frameworks. Recently, I completed a development internship at MediaVerse, where I helped build the 'Qarib' application using Nest.js and Flutter. I also enjoy building complex backend architectures, having developed a B2B management system called SmartShop and a collaborative platform for developers called DevHub.",
+    "I am a Full Stack Developer at DabaDoc in Casablanca, building features with Ruby on Rails, Angular and React. My experience also includes working on Qarib at MediaVerse with Nest.js, Next.js and Flutter, and building backend projects with Java and Spring Boot. I enjoy turning complex requirements into reliable, usable web applications.",
   avatarUrl: "/web-app-manifest-512x512.jpg",
 skills: [
     // Row 1

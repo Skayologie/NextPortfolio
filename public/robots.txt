@@ -1,5 +1,5 @@
 # Sitemap
-Sitemap: https://jawadboulmal.com/sitemap.xml
+Sitemap: https://www.jawadboulmal.com/sitemap.xml
 
 User-agent: *
 Allow: /

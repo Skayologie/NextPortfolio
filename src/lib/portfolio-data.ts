@@ -1,3 +1,5 @@
+import { cache } from "react";
+import { normalizeProject } from "./projects";
 import { createClient } from "./supabase";
 import { createAdminClient } from "./supabase-admin";
 import { DATA } from "@/data/resume";
@@ -69,8 +71,8 @@ export async function getSkills(): Promise<SkillData[]> {
     return data.map((s) => ({
       id: s.id,
       name: s.name,
-      iconKey: s.icon_key,
-      iconUrl: s.icon_url ?? "",
+      iconKey: NAME_TO_KEY[s.name] ?? s.icon_key,
+      iconUrl: NAME_TO_KEY[s.name] ? "" : (s.icon_url ?? ""),
       sortOrder: s.sort_order,
     }));
   } catch {
@@ -168,7 +170,7 @@ export async function getHero(): Promise<HeroData> {
 
     if (error || !data) {
       return {
-        displayName: DATA.name.split(" ")[0],
+        displayName: DATA.name.split(" | ")[0],
         description: DATA.description,
         avatarUrl: DATA.avatarUrl,
       };
@@ -180,7 +182,7 @@ export async function getHero(): Promise<HeroData> {
     };
   } catch {
     return {
-      displayName: DATA.name.split(" ")[0],
+      displayName: DATA.name.split(" | ")[0],
       description: DATA.description,
       avatarUrl: DATA.avatarUrl,
     };
@@ -259,7 +261,7 @@ export async function getWorkExperience(): Promise<WorkExperience[]> {
       start: item.start_date,
       end: item.end_date ?? "Present",
       description: item.description ?? "",
-    }));
+    })).sort((a, b) => Number(/^(present|now|current|en cours)$/i.test(b.end)) - Number(/^(present|now|current|en cours)$/i.test(a.end)));
   } catch {
     return DATA.work as unknown as WorkExperience[];
   }
@@ -306,7 +308,7 @@ export type ProjectData = {
   links: ProjectLink[];
 };
 
-export async function getProjects(): Promise<ProjectData[]> {
+export const getProjects = cache(async (): Promise<ProjectData[]> => {
   try {
     const supabase = createClient();
     const { data, error } = await supabase
@@ -316,7 +318,7 @@ export async function getProjects(): Promise<ProjectData[]> {
 
     if (error || !data || data.length === 0) return staticProjectsFallback();
 
-    return data.map((item) => ({
+    return data.map((item) => normalizeProject({
       title: item.title,
       href: item.href ?? "#",
       dates: item.dates ?? "",
@@ -330,7 +332,7 @@ export async function getProjects(): Promise<ProjectData[]> {
   } catch {
     return staticProjectsFallback();
   }
-}
+});
 
 export type HackathonLink = {
   title: string;
@@ -389,7 +391,7 @@ function staticHackathonsFallback(): HackathonData[] {
 }
 
 function staticProjectsFallback(): ProjectData[] {
-  return DATA.projects.map((p) => ({
+  return DATA.projects.map((p) => normalizeProject({
     title: p.title,
     href: p.href,
     dates: p.dates,

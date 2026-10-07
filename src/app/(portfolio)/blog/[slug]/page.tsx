@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { title, publishedAt: publishedTime, summary: description, image } = post;
   const ogImage = image
     ? (image.startsWith("http") ? image : `${DATA.url}${image}`)
-    : `${DATA.url}/blog/${slug}/opengraph-image`;
+    : `${DATA.url}/og-image.png`;
   return {
     title, description,
     keywords: ["Jawad Boulmal", "Blog", "Full Stack Developer", "Programming", "Web Development", "Tutorial", "Tech Article", ...title.split(" ").filter(word => word.length > 3)],
@@ -50,11 +50,11 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
   const getSlug = (p: (typeof sortedPosts)[0]) => p._meta.path.replace(/\.mdx$/, "");
   const jsonLdImage = post.image
     ? (post.image.startsWith("http") ? post.image : `${DATA.url}${post.image}`)
-    : `${DATA.url}/blog/${slug}/opengraph-image`;
+    : `${DATA.url}/og-image.png`;
 
   return (
     <section id="blog">
-      <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "BlogPosting", headline: post.title, datePublished: post.publishedAt, dateModified: post.publishedAt, description: post.summary, image: jsonLdImage, url: `${DATA.url}/blog/${slug}`, author: { "@type": "Person", name: DATA.name } }).replace(/</g, "\\u003c") }} />
+      <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "BlogPosting", headline: post.title, datePublished: post.publishedAt, dateModified: post.publishedAt, description: post.summary, image: jsonLdImage, url: `${DATA.url}/blog/${slug}`, author: { "@type": "Person", name: "Jawad Boulmal", "@id": `${DATA.url}#person`, url: DATA.url } }).replace(/</g, "\\u003c") }} />
       <div className="flex justify-start gap-4 items-center">
         <Link href="/blog" className="text-sm text-muted-foreground hover:text-foreground transition-colors border border-border rounded-lg px-2 py-1 inline-flex items-center gap-1 mb-6 group" aria-label="Back to Blog">
           <ChevronLeft className="size-3 group-hover:-translate-x-px transition-transform" />Back to Blog

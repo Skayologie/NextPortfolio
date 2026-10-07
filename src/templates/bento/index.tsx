@@ -1,3 +1,4 @@
+import { projectSummary, projectPath } from "@/lib/projects";
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import Markdown from "react-markdown";
@@ -65,7 +66,7 @@ export default function BentoTemplate({ data }: { data: PortfolioData }) {
             <div key={w.company} className="flex gap-5 pb-10 last:pb-0">
               <div className="relative z-10 mt-1 shrink-0">
                 {w.logoUrl
-                  ? <img src={w.logoUrl} alt={w.company} className="size-10 rounded-full border-2 border-background ring-2 ring-border object-contain p-0.5 bg-card shadow-sm" />
+                  ? <img loading="lazy" decoding="async" src={w.logoUrl} alt={w.company} className="size-10 rounded-full border-2 border-background ring-2 ring-border object-contain p-0.5 bg-card shadow-sm" />
                   : <div className={`size-10 rounded-full border-2 border-background ring-2 ring-border bg-primary/10 flex items-center justify-center shadow-sm`}>
                       <span className="text-xs font-bold text-primary">{String(i + 1)}</span>
                     </div>}
@@ -99,7 +100,7 @@ export default function BentoTemplate({ data }: { data: PortfolioData }) {
             <div key={e.school} className="flex gap-5 pb-8 last:pb-0">
               <div className="relative z-10 mt-1 shrink-0">
                 {e.logoUrl
-                  ? <img src={e.logoUrl} alt={e.school} className="size-10 rounded-full border-2 border-background ring-2 ring-border object-contain p-0.5 bg-card shadow-sm" />
+                  ? <img loading="lazy" decoding="async" src={e.logoUrl} alt={e.school} className="size-10 rounded-full border-2 border-background ring-2 ring-border object-contain p-0.5 bg-card shadow-sm" />
                   : <div className="size-10 rounded-full border-2 border-background ring-2 ring-border bg-muted shadow-sm" />}
               </div>
               <div className="flex-1 pt-1.5">
@@ -120,7 +121,7 @@ export default function BentoTemplate({ data }: { data: PortfolioData }) {
             const Icon = !s.iconUrl ? SKILL_ICONS[s.iconKey] : null;
             return (
               <div key={s.id} className="flex items-center gap-2 px-3 py-2 rounded-xl border border-border/60 bg-card hover:bg-muted transition-colors shadow-sm">
-                {s.iconUrl ? <img src={s.iconUrl} alt={s.name} className="size-5 object-contain" /> : Icon ? <Icon className="size-5" /> : null}
+                {s.iconUrl ? <img loading="lazy" decoding="async" src={s.iconUrl} alt={s.name} className="size-5 object-contain" /> : Icon ? <Icon className="size-5" /> : null}
                 <span className="text-sm font-medium">{s.name}</span>
               </div>
             );
@@ -134,14 +135,14 @@ export default function BentoTemplate({ data }: { data: PortfolioData }) {
         <ProjectsPaginated className="flex flex-col gap-4">
           {projects.map(p => (
             <div key={p.title} className="flex flex-col sm:flex-row gap-4 border border-border rounded-2xl bg-card overflow-hidden hover:shadow-md transition-shadow">
-              {p.image && <img src={p.image} alt={p.title} className="w-full sm:w-36 h-40 sm:h-auto object-cover shrink-0" />}
+              {p.image && <img loading="lazy" decoding="async" src={p.image} alt={p.title} className="w-full sm:w-36 h-40 sm:h-auto object-cover shrink-0" />}
               <div className="flex-1 p-5 flex flex-col justify-between gap-3">
                 <div>
                   <div className="flex items-start justify-between gap-2 flex-wrap mb-2">
                     <p className="font-semibold text-base">{p.title}</p>
                     <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">{p.dates}</span>
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{p.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{projectSummary(p.description)}</p>
                 </div>
                 <div>
                   <div className="flex flex-wrap gap-1 mb-3">
@@ -169,7 +170,7 @@ export default function BentoTemplate({ data }: { data: PortfolioData }) {
           {hackathons.map(h => (
             <div key={h.title} className="flex gap-4 p-4 border border-border rounded-2xl bg-card hover:shadow-sm transition-shadow">
               {h.image
-                ? <img src={h.image} alt={h.title} className="size-12 rounded-full border object-contain p-1 bg-muted shrink-0" />
+                ? <img loading="lazy" decoding="async" src={h.image} alt={h.title} className="size-12 rounded-full border object-contain p-1 bg-muted shrink-0" />
                 : <div className="size-12 rounded-full border bg-muted shrink-0" />}
               <div>
                 <p className="font-semibold">{h.title}</p>

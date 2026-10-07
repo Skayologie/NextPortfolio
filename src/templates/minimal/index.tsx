@@ -1,3 +1,4 @@
+import { projectSummary, projectPath } from "@/lib/projects";
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import Markdown from "react-markdown";
@@ -57,7 +58,7 @@ export default function MinimalTemplate({ data }: { data: PortfolioData }) {
           <div className="flex flex-col gap-6">
             {work.map(w => (
               <div key={w.company} className="flex gap-4">
-                {w.logoUrl ? <img src={w.logoUrl} alt={w.company} className="size-10 rounded-full border object-contain p-1 ring-2 ring-border shrink-0 mt-1" /> : <div className="size-10 rounded-full border ring-2 ring-border bg-muted shrink-0 mt-1" />}
+                {w.logoUrl ? <img loading="lazy" decoding="async" src={w.logoUrl} alt={w.company} className="size-10 rounded-full border object-contain p-1 ring-2 ring-border shrink-0 mt-1" /> : <div className="size-10 rounded-full border ring-2 ring-border bg-muted shrink-0 mt-1" />}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-2">
                     <div>
@@ -82,7 +83,7 @@ export default function MinimalTemplate({ data }: { data: PortfolioData }) {
           <div className="flex flex-col gap-4">
             {education.map(e => (
               <Link key={e.school} href={e.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
-                {e.logoUrl ? <img src={e.logoUrl} alt={e.school} className="size-10 rounded-full border object-contain p-1 ring-2 ring-border shrink-0" /> : <div className="size-10 rounded-full border ring-2 ring-border bg-muted shrink-0" />}
+                {e.logoUrl ? <img loading="lazy" decoding="async" src={e.logoUrl} alt={e.school} className="size-10 rounded-full border object-contain p-1 ring-2 ring-border shrink-0" /> : <div className="size-10 rounded-full border ring-2 ring-border bg-muted shrink-0" />}
                 <div className="flex-1 min-w-0">
                   <h3 className="font-semibold group-hover:underline">{e.school}</h3>
                   <p className="text-sm text-muted-foreground">{e.degree}</p>
@@ -101,7 +102,7 @@ export default function MinimalTemplate({ data }: { data: PortfolioData }) {
           <div className="flex flex-wrap gap-2">
             {skills.map(s => { const Icon = !s.iconUrl ? SKILL_ICONS[s.iconKey] : null; return (
               <div key={s.id} className="flex items-center gap-2 px-3 py-2 rounded-xl border border-border/60 bg-card shadow-sm">
-                {s.iconUrl ? <img src={s.iconUrl} alt={s.name} className="size-5 object-contain shrink-0" /> : Icon ? <Icon className="size-5 shrink-0" /> : null}
+                {s.iconUrl ? <img loading="lazy" decoding="async" src={s.iconUrl} alt={s.name} className="size-5 object-contain shrink-0" /> : Icon ? <Icon className="size-5 shrink-0" /> : null}
                 <span className="text-sm font-medium">{s.name}</span>
               </div>
             ); })}
@@ -116,11 +117,11 @@ export default function MinimalTemplate({ data }: { data: PortfolioData }) {
           <ProjectsPaginated className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {projects.map(p => (
               <div key={p.title} className="border border-border rounded-xl overflow-hidden bg-card flex flex-col">
-                {p.image && <img src={p.image} alt={p.title} className="w-full h-36 object-cover" />}
+                {p.image && <img loading="lazy" decoding="async" src={p.image} alt={p.title} className="w-full h-36 object-cover" />}
                 <div className="p-4 flex flex-col gap-2 flex-1">
-                  <h3 className="font-semibold">{p.title}</h3>
+                  <h3 className="font-semibold"><Link href={projectPath(p)} className="hover:underline">{p.title}</Link></h3>
                   <p className="text-xs text-muted-foreground">{p.dates}</p>
-                  <p className="text-sm text-muted-foreground flex-1">{p.description}</p>
+                  <p className="text-sm text-muted-foreground flex-1">{projectSummary(p.description)}</p>
                   <div className="flex flex-wrap gap-1">{p.technologies.slice(0, 4).map(t => <Badge key={t} variant="secondary" className="text-xs">{t}</Badge>)}</div>
                   <div className="flex gap-2">{p.links.map((l, i) => <Link key={i} href={l.href} target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1">{l.icon_type === "github" ? <Icons.github className="size-3" /> : <Icons.globe className="size-3" />}{l.type}</Link>)}</div>
                 </div>
@@ -137,7 +138,7 @@ export default function MinimalTemplate({ data }: { data: PortfolioData }) {
           <div className="flex flex-col gap-4">
             {hackathons.map(h => (
               <div key={h.title} className="flex gap-4 items-start">
-                {h.image ? <img src={h.image} alt={h.title} className="size-10 rounded-full border object-contain p-1 ring-2 ring-border shrink-0 mt-1" /> : <div className="size-10 rounded-full border ring-2 ring-border bg-muted shrink-0 mt-1" />}
+                {h.image ? <img loading="lazy" decoding="async" src={h.image} alt={h.title} className="size-10 rounded-full border object-contain p-1 ring-2 ring-border shrink-0 mt-1" /> : <div className="size-10 rounded-full border ring-2 ring-border bg-muted shrink-0 mt-1" />}
                 <div className="flex-1">
                   <h3 className="font-semibold">{h.title}</h3>
                   <p className="text-xs text-muted-foreground">{h.dates} · {h.location}</p>
